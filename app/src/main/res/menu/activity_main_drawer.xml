@@ -5,17 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/car_valuation"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Car Valuation" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/accident_assessment"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Accident Assessment" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/reports"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Reports" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
@@ -31,7 +31,7 @@
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Version 1.0" />
         </menu>
     </item>
 

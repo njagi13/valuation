@@ -19,6 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".VideoPreviewActivity"
+            android:label="@string/title_activity_video_preview"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PicturePreviewActivity"
+            android:label="@string/title_activity_picture_preview"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

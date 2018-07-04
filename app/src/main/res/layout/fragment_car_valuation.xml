@@ -1,0 +1,254 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dnjagi.carval.CarValuationFragment">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layemail"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_customer_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Number Plate"
+                        android:inputType="number"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layMake"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/brand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Brand"
+                        android:inputType="number"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layModel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/Modeltxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Model"
+                        android:inputType="number"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layYear"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/Yeartxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Year"
+                        android:inputType="number"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laynames"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_fname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="First Name"
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_lname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Last Name"
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layphone"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_phone1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Phone1 #"
+                        android:inputType="phone"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_phone2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="Phone2 #"
+                        android:inputType="phone"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <!-- Email Label -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5">
+
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textSize="13dp" />
+
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <Button
+                android:id="@+id/buttonCancelInvoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#F1948A"
+                android:text="Cancel"></Button>
+
+            <Button
+                android:id="@+id/buttonNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#7DCEA0"
+                android:text="Next"></Button>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

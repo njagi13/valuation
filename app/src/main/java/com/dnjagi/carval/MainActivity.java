@@ -1,8 +1,12 @@
 package com.dnjagi.carval;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        CarValuationFragment.OnFragmentInteractionListener,
+        ReportsFragment.OnFragmentInteractionListener,
+        CameraViewFragment.OnFragmentInteractionListener,
+        AccidentAssessmentFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,28 +82,60 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        //NOTE: creating fragment object
+        Fragment fragment = null;
 
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.car_valuation) {
+            fragment = new CarValuationFragment();
+        } else if (id == R.id.accident_assessment) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            fragment = new AccidentAssessmentFragment();
+        } else if (id == R.id.reports) {
+            fragment = new ReportsFragment();
         }
+       /* } else if (id == R.id.nav_logout) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+
+        final Fragment finalFragment = fragment;
+        new Thread(new Runnable() {
+            public void run() {
+                //NOTE: Fragment changing code
+                if (finalFragment != null) {
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.mainFrame, finalFragment);
+                    ft.commit();
+                }
+
+                //NOTE:  Closing the drawer after selecting
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout); //Ya you can also globalize this variable :P
+                        drawer.closeDrawer(GravityCompat.START);
+
+                    }
+                });
+            }
+        }).start();
         return true;
+    }
+
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

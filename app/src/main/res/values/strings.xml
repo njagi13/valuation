@@ -5,4 +5,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="car_val_fragment">Car Valuation</string>
+    <string name="acc_fragment">Car Valuation</string>
+    <string name="report_fragment">Car Valuation</string>
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_activity_video_preview">VideoPreviewActivity</string>
+    <string name="title_activity_picture_preview">PicturePreviewActivity</string>
 </resources>
