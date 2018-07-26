@@ -74,7 +74,9 @@ public class CameraViewFragment extends Fragment implements View.OnClickListener
         cameraView = view.findViewById(R.id.camera);
         cameraView.addCameraListener(new CameraListener() {
             public void onCameraOpened(CameraOptions options) { onOpened(); }
-            public void onPictureTaken(byte[] jpeg) { onPicture(jpeg); }
+            public void onPictureTaken(byte[] jpeg) {
+                onPicture(jpeg);
+            }
 
             @Override
             public void onVideoTaken(File video) {
@@ -172,11 +174,8 @@ public class CameraViewFragment extends Fragment implements View.OnClickListener
     }
 
     private void captureVideo() {
-        if (cameraView.getSessionType() != SessionType.VIDEO) {
-            message("Can't record video while session type is 'picture'.", false);
-            return;
-        }
-        if (mCapturingPicture || mCapturingVideo) return;
+        cameraView.setSessionType(SessionType.VIDEO);
+              if ( mCapturingVideo) return;
         mCapturingVideo = true;
         message("Recording for 8 seconds...", true);
         cameraView.startCapturingVideo(null, 8000);

@@ -23,6 +23,7 @@ android {
 
 allprojects {
     repositories {
+
         google()
         jcenter()
 
@@ -30,6 +31,7 @@ allprojects {
         maven {
             url 'https://maven.google.com'
         }
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -47,4 +49,7 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
     implementation 'com.otaliastudios:cameraview:1.5.1'
+    implementation 'com.android.support:exifinterface:26.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
 }

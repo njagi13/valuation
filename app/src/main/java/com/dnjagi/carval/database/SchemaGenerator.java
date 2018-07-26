@@ -1,4 +1,4 @@
-package Database;
+package com.dnjagi.carval.database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-import Model.DatabaseObject;
+import com.dnjagi.carval.Model.DatabaseObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static Database.ReflectionUtil.getDomainClasses;
+import static com.dnjagi.carval.database.ReflectionUtil.getDomainClasses;
 
 public class SchemaGenerator {
 
