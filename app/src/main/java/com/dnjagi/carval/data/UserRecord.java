@@ -1,10 +1,9 @@
 package com.dnjagi.carval.data;
 
 import com.google.gson.annotations.SerializedName;
-import com.dnjagi.carval.database.ColumnIndex;
 import com.dnjagi.carval.database.PersistAnnotation;
 import com.dnjagi.carval.database.Unique;
-import com.dnjagi.carval.Model.DatabaseObject;
+import com.dnjagi.carval.model.DatabaseObject;
 
 import java.util.UUID;
 

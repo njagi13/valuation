@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-import com.dnjagi.carval.Model.DatabaseObject;
+import com.dnjagi.carval.model.DatabaseObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;

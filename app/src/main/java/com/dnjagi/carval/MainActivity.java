@@ -1,6 +1,7 @@
 package com.dnjagi.carval;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -21,6 +22,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dnjagi.carval.database.SugarContext;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         CarValuationFragment.OnFragmentInteractionListener,
@@ -28,10 +31,17 @@ public class MainActivity extends AppCompatActivity
         CameraViewFragment.OnFragmentInteractionListener,
         AccidentAssessmentFragment.OnFragmentInteractionListener {
 
+    public static Context appContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        appContext = getApplicationContext();
+        SugarContext.init(appContext);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

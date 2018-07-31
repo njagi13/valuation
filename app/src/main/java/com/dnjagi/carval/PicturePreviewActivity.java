@@ -7,22 +7,17 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
-
-import com.dnjagi.carval.Global.GlobalVarible;
+import com.dnjagi.carval.global.GlobalVarible;
 import com.otaliastudios.cameraview.AspectRatio;
 import com.otaliastudios.cameraview.CameraUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -57,11 +52,14 @@ public class PicturePreviewActivity extends Activity {
             @Override
             public void onBitmapReady(Bitmap bitmap) {
                 imageView.setImageBitmap(bitmap);
-                String fileName = String.valueOf(new Date()) +".jpeg";
-             //   createDirectoryAndSaveFile(bitmap,fileName);
+                String fileName = String.valueOf(new Date()) + ".jpeg";
+                //   createDirectoryAndSaveFile(bitmap,fileName);
                 createFolders(bitmap);
                 // approxUncompressedSize.setTitle("Approx. uncompressed size");
                 // approxUncompressedSize.setMessage(getApproximateFileMegabytes(bitmap) + "MB");
+
+
+
 
                 captureLatency.setTitle("Approx. capture latency");
                 captureLatency.setMessage(delay + " milliseconds");
@@ -87,14 +85,20 @@ public class PicturePreviewActivity extends Activity {
     private static final String FAV_FOLDER = "/fav/";
     private static final String TEMP_FOLDER = "/temp/";
     private static final String SERIALIZED_FOLDER = "/upload/";
-    private  static  String SD_CARD_PATH;
+    private static String SD_CARD_PATH;
 
     private void createFolders(Bitmap imageToSave) {
         // create temp and fav folders
         File mFolder = new File(SD_CARD_PATH + BASE_FOLDER + TEMP_FOLDER);
-       String fileName = String.valueOf(new Date());
-        GlobalVarible.fileRoot = UUID.randomUUID().toString();
-        mFolder = new File(SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" +  GlobalVarible.fileRoot +"/" + fileName+".png" );
+        String fileName = "";
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String strDate = mdformat.format(calendar.getTime());
+
+        fileName = strDate;
+        GlobalVarible.fileRoot = "KCC7874H";
+        mFolder = new File(SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + UUID.randomUUID().toString() + "_" + fileName + ".png");
         if (!mFolder.exists()) {
             mFolder.mkdirs();
         }
@@ -102,10 +106,10 @@ public class PicturePreviewActivity extends Activity {
         if (mFolder.exists()) {
             mFolder.delete();
         }
-
+        GlobalVarible.imgpath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + fileName + ".png";
         try {
-            FileOutputStream out =new FileOutputStream(mFolder);
-                 imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            FileOutputStream out = new FileOutputStream(mFolder);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
         } catch (FileNotFoundException e) {
@@ -115,7 +119,6 @@ public class PicturePreviewActivity extends Activity {
         }
 
     }
-
 
 
     /* Checks if external storage is available for read and write */

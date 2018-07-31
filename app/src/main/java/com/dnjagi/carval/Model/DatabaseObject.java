@@ -1,4 +1,4 @@
-package com.dnjagi.carval.Model;
+package com.dnjagi.carval.model;
 
 import com.dnjagi.carval.database.QueryBuilder;
 import com.dnjagi.carval.database.SugarRecord;
