@@ -1,40 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:adjustViewBounds="true" />
+    <GridView
+        android:id="@+id/PhoneImageGrid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:columnWidth="110dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dp" />
 
-        <com.dnjagi.carval.MessageView
-            android:id="@+id/nativeCaptureResolution"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <!-- com.otaliastudios.cameraview.demo.MessageView
-            android:id="@+id/actualResolution"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/-->
-
-        <!-- com.otaliastudios.cameraview.demo.MessageView
-            android:id="@+id/approxUncompressedSize"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/-->
-
-        <com.dnjagi.carval.MessageView
-            android:id="@+id/captureLatency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

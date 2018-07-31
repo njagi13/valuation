@@ -11,6 +11,7 @@ public class GlobalVarible {
     public static String fileRoot = "root";
     public static String url = "http://95ea3e27.ngrok.io/";
     public static  String imgpath = "";
+    public static boolean RefreshGrid = false;
 
     public static String parseDateToddMMyyyy(String time) {
         String inputPattern = "yyyy-MM-dd HH:mm:ss";
