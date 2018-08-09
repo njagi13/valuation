@@ -1,5 +1,6 @@
 package com.dnjagi.carval;
 
+import com.dnjagi.carval.data.UploadRecord;
 import com.dnjagi.carval.global.GlobalVarible;
 import com.dnjagi.carval.Interface.IPosServicesInterface;
 import com.google.gson.Gson;

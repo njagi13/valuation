@@ -40,14 +40,14 @@ public class UploadService extends IntentService {
     Date nextPollInventory = null;
     public final long MS_TO_MINS = 1000 * 60;
 
-    public void pollPendingValuationRecords() {
+    public void pollPendingValuationRecords(UploadRecord uploadRecord) {
         try {
             Date now = new Date();
             if (nextPollInventory == null || (now.getTime() > (nextPollInventory.getTime() + (MS_TO_MINS)))) {
                 nextPollInventory = now;
                 ArrayList<UploadRecord> ir = UploadRecord.findAllRecords(UploadRecord.class);
                 UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
-                uploadRecordAPI.PostUploadRecord();
+                uploadRecordAPI.PostUploadRecord(uploadRecord);
             }
 
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class UploadService extends IntentService {
 
     void backgroundThreadFunc() {
         while (IsRunning == true) {
-            pollPendingValuationRecords();
+           // pollPendingValuationRecords();
         }
     }
 

@@ -15,5 +15,5 @@ import retrofit2.http.Part;
 public interface IPosServicesInterface {
     @Multipart
     @POST("/api/Assessment/PostAssessment")
-    Call<ResponseBody> postImage(@Part MultipartBody.Part image, @Part("name") RequestBody name);
+    Call<ResponseBody> postImage(@Part MultipartBody.Part image, @Part("uploadId") RequestBody uploadId);
 }

@@ -1,5 +1,12 @@
 package com.dnjagi.carval;
 
+import android.content.Context;
+
+import com.dnjagi.carval.data.BrakingSystemRecord;
+import com.dnjagi.carval.data.UploadRecord;
+import com.dnjagi.carval.data.UploadRecordAPI;
+import com.dnjagi.carval.database.SugarContext;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,4 +21,6 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
+
 }

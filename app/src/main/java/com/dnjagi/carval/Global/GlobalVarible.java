@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class GlobalVarible {
     public static String fileRoot = "root";
-    public static String url = "http://95ea3e27.ngrok.io/";
+    public static String url = "http://afd3cc42.ngrok.io/";
     public static  String imgpath = "";
     public static boolean RefreshGrid = false;
 

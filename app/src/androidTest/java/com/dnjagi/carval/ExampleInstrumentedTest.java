@@ -4,6 +4,11 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.dnjagi.carval.data.BrakingSystemRecord;
+import com.dnjagi.carval.data.UploadRecord;
+import com.dnjagi.carval.data.UploadRecordAPI;
+import com.dnjagi.carval.database.SugarContext;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,5 +27,37 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.dnjagi.carval", appContext.getPackageName());
+    }
+
+    public static Context appContext;
+    @Test
+    public void postAssessmentTest(){
+        appContext =  InstrumentationRegistry.getTargetContext();
+        SugarContext.init(appContext);
+        UploadRecord uploadRecord = new UploadRecord();
+        uploadRecord.BodyType = "Hattch";
+        uploadRecord.ChassisNumber= "256664SA552565";
+        uploadRecord.Color = "White";
+        uploadRecord.DateOfReg = "May 2007";
+        uploadRecord.EngineNumber = "522264454W556";
+        uploadRecord.EngineRating = "2500cc";
+        uploadRecord.Email = "njoroge@gmail.com";
+        uploadRecord.FirstName = "John";
+        uploadRecord.LastName = "Kiarie";
+        uploadRecord.BrakingSystemRecordModel = brakingSystem();
+
+        UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
+        uploadRecordAPI.PostUploadRecord(uploadRecord);
+
+
+    }
+
+    private BrakingSystemRecord brakingSystem() {
+        BrakingSystemRecord brakingSystemRecord = new BrakingSystemRecord();
+        brakingSystemRecord.ABSOperateProperly = true;
+        brakingSystemRecord.BrakePedalFreePlayndTravelNormal = true;
+        brakingSystemRecord.BrakesEffective = true;
+        brakingSystemRecord.FluidLeaksInBrakeSystem = false;
+        return  brakingSystemRecord;
     }
 }
