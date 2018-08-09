@@ -1,5 +1,6 @@
 package com.dnjagi.carval;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 
 public class CarValuationFragment extends Fragment
@@ -47,14 +54,52 @@ public class CarValuationFragment extends Fragment
         }
     }
 
+    Calendar myCalendar = Calendar.getInstance();
+    EditText dateOfRegText;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_car_valuation, container, false);
         Button btnNext = (Button) view.findViewById(R.id.buttonNext);
+
+
+        dateOfRegText = (EditText) view.findViewById(R.id.input_dateofreg);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDateOfReg();
+            }
+
+        };
+
+        dateOfRegText.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(getContext(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         btnNext.setOnClickListener(this);
         return view;
+    }
+
+    private void updateDateOfReg() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        dateOfRegText.setText(sdf.format(myCalendar.getTime()));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

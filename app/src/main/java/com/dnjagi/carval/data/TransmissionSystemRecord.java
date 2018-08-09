@@ -12,7 +12,7 @@ import Model.DatabaseObject;
 
 public class TransmissionSystemRecord extends DatabaseObject {
 
-    public int UploadRecordID;
+    public UUID UploadRecordID;
 
     public boolean AutomaticGearboxSmooth;
 

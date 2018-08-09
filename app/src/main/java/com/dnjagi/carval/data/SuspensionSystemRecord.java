@@ -12,7 +12,7 @@ import Model.DatabaseObject;
 
 public class SuspensionSystemRecord extends DatabaseObject {
 
-    public int UploadRecordID;
+    public UUID UploadRecordID;
 
     public boolean BushesWornOut;
 

@@ -1,8 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.dnjagi.carval.CarValuationFragment">
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,30 +22,6 @@
             android:paddingRight="15dp">
 
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/layemail"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="10dp"
-                android:weightSum="1">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="0.5">
-
-                    <EditText
-                        android:id="@+id/input_customer_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="true"
-                        android:hint="Number Plate"
-                        android:inputType="number"
-                        android:textSize="13dp" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/layMake"
@@ -60,11 +38,11 @@
                     android:layout_weight="0.5">
 
                     <EditText
-                        android:id="@+id/brand"
+                        android:id="@+id/input_make"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:hint="Brand"
+                        android:hint="Make"
                         android:inputType="number"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
@@ -86,7 +64,7 @@
                     android:layout_weight="0.5">
 
                     <EditText
-                        android:id="@+id/Modeltxt"
+                        android:id="@+id/input_model"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
@@ -95,6 +73,84 @@
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layemail"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_regnumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Reg Number"
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laycolor"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Color"
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layodom"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_odom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Odom. Reading(Kms/Ms./Hrs.)"
+                        android:inputType="number"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -112,12 +168,163 @@
                     android:layout_weight="0.5">
 
                     <EditText
-                        android:id="@+id/Yeartxt"
+                        android:id="@+id/input_yearOfManf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:hint="Year"
+                        android:hint="Year Of Manf."
                         android:inputType="number"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layDateOfReg"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_dateofreg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:enabled="true"
+                        android:hint="Date Of Reg."
+                        android:inputType="date"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layins"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_policyNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Ins.Company/Policy No."
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layexpry"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_policyexpirydate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Expity Date"
+                        android:inputType="date"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laychasis"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_chasisnumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Chasis Number"
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layengno"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_enginenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Eng. Number"
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layrating"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_engrating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:hint="Engine Rating"
+                        android:inputType="text"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -251,4 +458,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</ScrollView>

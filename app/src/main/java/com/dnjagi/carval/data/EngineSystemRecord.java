@@ -13,7 +13,7 @@ public class EngineSystemRecord extends DatabaseObject {
 
     // Engine System
 
-    public int UploadRecordID;
+    public UUID UploadRecordID;
 
     public boolean StartsAndIdlesProperly;
 

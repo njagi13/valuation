@@ -11,7 +11,7 @@ import Model.DatabaseObject;
  */
 
 public class BrakingSystemRecord extends DatabaseObject {
-    public int UploadRecordID;
+    public UUID UploadRecordID;
 
     public boolean ParkingBrakeEffective;
 
