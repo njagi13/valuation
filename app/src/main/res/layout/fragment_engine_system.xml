@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/engineStarts"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/enginestartsproperly_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Does Engine starts and Idles properly?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laymountings"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/mountingswornout_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are Mountings worn out?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layvalvemech"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/valvemechanism_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Is valve mechanism noisy?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laydrivebelts"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/drivebelts_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are drive belts loose/noisy/worn out?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layoilleaks"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/oilleaks_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are there signs of engine oil leaks?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layrpm"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/rpm_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Does Engine operate well at various RPM's?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laynoiseinengine"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/noiseinengine_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Any abnormal noise or vibration in engine?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laywaterpump"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/waterpump_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Does water pump operate well?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lay2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/radiatorcap_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Does radiator cap operate well?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lay3"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/enginecoolantlevel_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Is engine coolant level correct?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lay4"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="0.5">
+
+                    <EditText
+                        android:id="@+id/input_comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:maxLines="4"
+                        android:lines="4"
+                        android:hint="Comments on Engine System"
+                        android:inputType="text"
+                        android:textSize="13dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <Button
+                    android:id="@+id/buttonCancelInvoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Back"></Button>
+
+                <Button
+                    android:id="@+id/buttonNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:text="Next"></Button>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

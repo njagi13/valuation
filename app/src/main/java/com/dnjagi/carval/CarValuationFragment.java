@@ -55,7 +55,7 @@ public class CarValuationFragment extends Fragment
     }
 
     Calendar myCalendar = Calendar.getInstance();
-    EditText dateOfRegText;
+    EditText dateOfRegText , dateOfPolicyExpiryText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +66,8 @@ public class CarValuationFragment extends Fragment
 
 
         dateOfRegText = (EditText) view.findViewById(R.id.input_dateofreg);
+        dateOfPolicyExpiryText = (EditText) view.findViewById(R.id.input_policyexpirydate);
+
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -91,6 +93,31 @@ public class CarValuationFragment extends Fragment
             }
         });
 
+        final DatePickerDialog.OnDateSetListener date1 = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDateOfExpiry();
+            }
+
+        };
+
+        dateOfPolicyExpiryText.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(getContext(), date1, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         btnNext.setOnClickListener(this);
         return view;
     }
@@ -100,6 +127,13 @@ public class CarValuationFragment extends Fragment
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         dateOfRegText.setText(sdf.format(myCalendar.getTime()));
+    }
+
+
+    private void updateDateOfExpiry() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        dateOfPolicyExpiryText.setText(sdf.format(myCalendar.getTime()));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -131,7 +165,8 @@ public class CarValuationFragment extends Fragment
         switch (v.getId()) {
             case R.id.buttonNext:
                 Fragment fragment = null;
-                fragment = new CameraViewFragment();
+               // fragment = new CameraViewFragment();
+                fragment = new EngineSystemFragment();
                 replaceFragment(fragment);
                 break;
         }
