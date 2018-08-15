@@ -30,10 +30,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/enginestartsproperly_switch"
+                    android:id="@+id/bsparkingbreak_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Does Engine starts and Idles properly?"
+                    android:text=" Is parking brake effective?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -47,10 +47,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/mountingswornout_switch"
+                    android:id="@+id/bsfootbrakespongy_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Are Mountings worn out?"
+                    android:text=" Is foot brake spongy?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -64,10 +64,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/valvemechanism_switch"
+                    android:id="@+id/bsbrakepedalfreeplay_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Is valve mechanism noisy?"
+                    android:text=" Is brake pedal free play and travel normal?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -81,10 +81,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/drivebelts_switch"
+                    android:id="@+id/bsabnormalnoise_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Are drive belts loose/noisy/worn out?"
+                    android:text=" Any abnormal noise or vibration in brakes?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -98,10 +98,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/oilleaks_switch"
+                    android:id="@+id/bsABS_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Are there signs of engine oil leaks?"
+                    android:text=" Does ABS operate properly?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -115,10 +115,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/rpm_switch"
+                    android:id="@+id/bsbrakeseffective_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Does Engine operate well at various RPM's?"
+                    android:text=" Are brakes effective?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -132,64 +132,14 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/noiseinengine_switch"
+                    android:id="@+id/bsfluidleaks_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Any abnormal noise or vibration in engine?"
+                    android:text=" Any fluid leaks in break system?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/laywaterpump"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/waterpump_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Does water pump operate well?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/lay2"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/radiatorcap_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Does radiator cap operate well?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/lay3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/enginecoolantlevel_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Is engine coolant level correct?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/lay4"
@@ -206,14 +156,14 @@
                     android:layout_weight="0.5">
 
                     <EditText
-                        android:id="@+id/input_comments"
+                        android:id="@+id/bsinput_comments"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:maxLines="4"
-                        android:lines="4"
-                        android:hint="Comments on Engine System"
+                        android:hint="Comments on Braking System"
                         android:inputType="text"
+                        android:lines="4"
+                        android:maxLines="4"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -223,19 +173,20 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:gravity="bottom"
                 android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 
                 <Button
-                    android:id="@+id/buttonBack"
+                    android:id="@+id/bsbuttonBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Back"></Button>
 
                 <Button
-                    android:id="@+id/buttonNext"
+                    android:id="@+id/bsbuttonNext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"

@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.dnjagi.carval.utility.Utilities;
 
 
-public class EngineSystemFragment extends Fragment {
+public class BrakingSystemFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,13 +25,13 @@ public class EngineSystemFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public EngineSystemFragment() {
+    public BrakingSystemFragment() {
         // Required empty public constructor
     }
 
 
-    public static EngineSystemFragment newInstance(String param1, String param2) {
-        EngineSystemFragment fragment = new EngineSystemFragment();
+    public static BrakingSystemFragment newInstance(String param1, String param2) {
+        BrakingSystemFragment fragment = new BrakingSystemFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -51,15 +51,15 @@ public class EngineSystemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Engine System Inspection");
-        View view = inflater.inflate(R.layout.fragment_engine_system, container, false);
+        getActivity().setTitle("Braking System Inspection");
+        View view = inflater.inflate(R.layout.fragment_braking_system, container, false);
 
-        Button btnPrevious = view.findViewById(R.id.buttonBack);
+        Button btnPrevious = view.findViewById(R.id.bsbuttonBack);
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Fragment fragment = new CarValuationFragment();
+                    Fragment fragment = new SuspensionSystemFragment();
                     replaceFragment(fragment);
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
@@ -67,19 +67,20 @@ public class EngineSystemFragment extends Fragment {
             }
         });
 
-        Button btnNext = view.findViewById(R.id.buttonNext);
+        Button btnNext = view.findViewById(R.id.bsbuttonNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Fragment fragment = new TransmissionSystemFragment();
+                    Fragment fragment = new CameraViewFragment();
                     replaceFragment(fragment);
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
             }
         });
-        return view;
+
+        return  view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -30,10 +30,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/enginestartsproperly_switch"
+                    android:id="@+id/tsautomaticgearbox_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Does Engine starts and Idles properly?"
+                    android:text=" Is Automatic gearbox change smooth?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -47,10 +47,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/mountingswornout_switch"
+                    android:id="@+id/tstorqueconverter_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Are Mountings worn out?"
+                    android:text=" Any evidence of torque converter spin?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -64,10 +64,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/valvemechanism_switch"
+                    android:id="@+id/tsgearsynchromesh_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Is valve mechanism noisy?"
+                    android:text=" Is manual gear synchromesh smooth?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -81,10 +81,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/drivebelts_switch"
+                    android:id="@+id/tsgearjump_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Are drive belts loose/noisy/worn out?"
+                    android:text=" Does any gear jump out of mesh?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -98,10 +98,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/oilleaks_switch"
+                    android:id="@+id/tsclutchslip_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Are there signs of engine oil leaks?"
+                    android:text=" Is there clutch slip?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -115,10 +115,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/rpm_switch"
+                    android:id="@+id/tsgearboxmounting_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Does Engine operate well at various RPM's?"
+                    android:text=" Are gearbox mountings worn out?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -132,10 +132,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/noiseinengine_switch"
+                    android:id="@+id/tsnoiseinengine_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Any abnormal noise or vibration in engine?"
+                    android:text=" Are drive shaft cv joints worn out?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -149,10 +149,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/waterpump_switch"
+                    android:id="@+id/tsoilleaks_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Does water pump operate well?"
+                    android:text=" Are there any fluid/oil leaks?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -166,10 +166,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/radiatorcap_switch"
+                    android:id="@+id/tspropeliershaftbent_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Does radiator cap operate well?"
+                    android:text=" Is propelier shaft bent or wobbling?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -183,10 +183,10 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/enginecoolantlevel_switch"
+                    android:id="@+id/tsdifferentialunity_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Is engine coolant level correct?"
+                    android:text=" Is differential unity noisy?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>
@@ -206,13 +206,13 @@
                     android:layout_weight="0.5">
 
                     <EditText
-                        android:id="@+id/input_comments"
+                        android:id="@+id/tsinput_comments"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:maxLines="4"
                         android:lines="4"
-                        android:hint="Comments on Engine System"
+                        android:hint="Comments on Transmission System"
                         android:inputType="text"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
@@ -228,14 +228,14 @@
                 android:paddingRight="15dp">
 
                 <Button
-                    android:id="@+id/buttonBack"
+                    android:id="@+id/tsbuttonBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Back"></Button>
 
                 <Button
-                    android:id="@+id/buttonNext"
+                    android:id="@+id/tsbuttonNext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"

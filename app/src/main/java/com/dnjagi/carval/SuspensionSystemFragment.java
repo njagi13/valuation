@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.dnjagi.carval.utility.Utilities;
 
 
-public class EngineSystemFragment extends Fragment {
+public class SuspensionSystemFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,13 +25,13 @@ public class EngineSystemFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public EngineSystemFragment() {
+    public SuspensionSystemFragment() {
         // Required empty public constructor
     }
 
 
-    public static EngineSystemFragment newInstance(String param1, String param2) {
-        EngineSystemFragment fragment = new EngineSystemFragment();
+    public static SuspensionSystemFragment newInstance(String param1, String param2) {
+        SuspensionSystemFragment fragment = new SuspensionSystemFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -51,24 +51,12 @@ public class EngineSystemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Engine System Inspection");
-        View view = inflater.inflate(R.layout.fragment_engine_system, container, false);
+        getActivity().setTitle("Suspension System Inspection");
+        View view = inflater.inflate(R.layout.fragment_suspension_system, container, false);
 
-        Button btnPrevious = view.findViewById(R.id.buttonBack);
+
+        Button btnPrevious = view.findViewById(R.id.ssbuttonBack);
         btnPrevious.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Fragment fragment = new CarValuationFragment();
-                    replaceFragment(fragment);
-                } catch (Exception ex) {
-                    Utilities.LogException(ex);
-                }
-            }
-        });
-
-        Button btnNext = view.findViewById(R.id.buttonNext);
-        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -79,6 +67,21 @@ public class EngineSystemFragment extends Fragment {
                 }
             }
         });
+
+        Button btnNext = view.findViewById(R.id.ssbuttonNext);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Fragment fragment = new BrakingSystemFragment();
+                    replaceFragment(fragment);
+                } catch (Exception ex) {
+                    Utilities.LogException(ex);
+                }
+            }
+        });
+
+
         return view;
     }
 
@@ -106,16 +109,15 @@ public class EngineSystemFragment extends Fragment {
         mListener = null;
     }
 
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.mainFrame, someFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 }

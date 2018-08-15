@@ -22,14 +22,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dnjagi.carval.data.SuspensionSystemRecord;
 import com.dnjagi.carval.database.SugarContext;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
+        HomeFragment.OnFragmentInteractionListener,
         CarValuationFragment.OnFragmentInteractionListener,
         ReportsFragment.OnFragmentInteractionListener,
         CameraViewFragment.OnFragmentInteractionListener,
         EngineSystemFragment.OnFragmentInteractionListener,
+        TransmissionSystemFragment.OnFragmentInteractionListener,
+        SuspensionSystemFragment.OnFragmentInteractionListener,
+        BrakingSystemFragment.OnFragmentInteractionListener,
         AccidentAssessmentFragment.OnFragmentInteractionListener {
 
     public static Context appContext;
@@ -57,6 +62,13 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         isStoragePermissionGranted();
+
+        // go to home page
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, new HomeFragment());
+        ft.commit();
+
+
     }
 
 
@@ -174,4 +186,6 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
 }
