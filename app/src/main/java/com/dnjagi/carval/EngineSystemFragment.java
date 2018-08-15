@@ -9,7 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 
+import com.dnjagi.carval.data.EngineSystemRecord;
+import com.dnjagi.carval.model.EngineSystem;
 import com.dnjagi.carval.utility.Utilities;
 
 
@@ -48,17 +53,40 @@ public class EngineSystemFragment extends Fragment {
         }
     }
 
+
+    private Switch enginestartsproperly_switch, mountingswornout_switch, valvemechanism_switch, drivebelts_switch, oilleaks_switch,
+            rpm_switch, noiseinengine_switch, waterpump_switch, radiatorcap_switch, enginecoolantlevel_switch;
+    private EditText input_comments;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         getActivity().setTitle("Engine System Inspection");
         View view = inflater.inflate(R.layout.fragment_engine_system, container, false);
+
+        enginestartsproperly_switch = (Switch) view.findViewById(R.id.enginestartsproperly_switch);
+        mountingswornout_switch = (Switch) view.findViewById(R.id.mountingswornout_switch);
+        valvemechanism_switch = (Switch) view.findViewById(R.id.valvemechanism_switch);
+        drivebelts_switch = (Switch) view.findViewById(R.id.drivebelts_switch);
+        oilleaks_switch = (Switch) view.findViewById(R.id.oilleaks_switch);
+        rpm_switch = (Switch) view.findViewById(R.id.rpm_switch);
+        noiseinengine_switch = (Switch) view.findViewById(R.id.noiseinengine_switch);
+        waterpump_switch = (Switch) view.findViewById(R.id.waterpump_switch);
+        radiatorcap_switch = (Switch) view.findViewById(R.id.radiatorcap_switch);
+        enginecoolantlevel_switch = (Switch) view.findViewById(R.id.enginecoolantlevel_switch);
+        input_comments = (EditText) view.findViewById(R.id.input_comments);
+
 
         Button btnPrevious = view.findViewById(R.id.buttonBack);
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
+                    //save values
+                    EngineSystemRecord engineSystemRecord = new EngineSystemRecord();
+                    engineSystemRecord.StartsAndIdlesProperly = enginestartsproperly_switch.isChecked();
+
                     Fragment fragment = new CarValuationFragment();
                     replaceFragment(fragment);
                 } catch (Exception ex) {
@@ -80,6 +108,8 @@ public class EngineSystemFragment extends Fragment {
             }
         });
         return view;
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
