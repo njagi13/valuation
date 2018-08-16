@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -22,8 +23,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.dnjagi.carval.data.LogRecord;
 import com.dnjagi.carval.data.SuspensionSystemRecord;
+import com.dnjagi.carval.database.SchemaGenerator;
 import com.dnjagi.carval.database.SugarContext;
+import com.dnjagi.carval.database.SugarDb;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -38,19 +42,16 @@ public class MainActivity extends AppCompatActivity
         AccidentAssessmentFragment.OnFragmentInteractionListener {
 
     public static Context appContext;
-
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        appContext = getApplicationContext();
-        SugarContext.init(appContext);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -61,7 +62,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        isStoragePermissionGranted();
+      boolean y =  isStoragePermissionGranted();
+
+
+        appContext = getApplicationContext();
+        SugarContext.init(getApplicationContext());
+
+        SchemaGenerator sg = new SchemaGenerator(getApplicationContext());
+        boolean isTableCreated = sg.tableExists(LogRecord.class, new SugarDb(getApplicationContext()).getDB());
+        if (!isTableCreated) {
+            sg.createDatabase(new SugarDb(getApplicationContext()).getDB());
+        }
 
         // go to home page
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

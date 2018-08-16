@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.dnjagi.carval.data.EngineSystemRecord;
+import com.dnjagi.carval.global.GlobalVarible;
 import com.dnjagi.carval.model.EngineSystem;
 import com.dnjagi.carval.utility.Utilities;
 
@@ -84,8 +85,6 @@ public class EngineSystemFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     //save values
-                    EngineSystemRecord engineSystemRecord = new EngineSystemRecord();
-                    engineSystemRecord.StartsAndIdlesProperly = enginestartsproperly_switch.isChecked();
 
                     Fragment fragment = new CarValuationFragment();
                     replaceFragment(fragment);
@@ -100,6 +99,23 @@ public class EngineSystemFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
+
+                    EngineSystemRecord engineSystemRecord = new EngineSystemRecord();
+                    engineSystemRecord.StartsAndIdlesProperly = enginestartsproperly_switch.isChecked();
+                    engineSystemRecord.MountingsWornOut = mountingswornout_switch.isChecked();
+                    engineSystemRecord.ValveMechanismNoisy = valvemechanism_switch.isChecked();
+                    engineSystemRecord.DriveBeltsLooseOrWornOut = drivebelts_switch.isChecked();
+                    engineSystemRecord.EngineLeaks = oilleaks_switch.isChecked();
+                    engineSystemRecord.EngineOperatesWellAtVariousRPM = rpm_switch.isChecked();
+                    engineSystemRecord.EngineAbnormalVibration = noiseinengine_switch.isChecked();
+                    engineSystemRecord.WaterPumpOperateWell = waterpump_switch.isChecked();
+                    engineSystemRecord.RadiatorCapOperateWell = radiatorcap_switch.isChecked();
+                    engineSystemRecord.CoolantLevelCorrect = enginecoolantlevel_switch.isChecked();
+                    engineSystemRecord.CommentsOnEngine = input_comments.getText().toString();
+
+                    engineSystemRecord.UploadRecordID = GlobalVarible.uploadRecord.UploadRecordID;
+                    GlobalVarible.uploadRecord.EngineSystemRecordModel = engineSystemRecord;
+
                     Fragment fragment = new TransmissionSystemFragment();
                     replaceFragment(fragment);
                 } catch (Exception ex) {

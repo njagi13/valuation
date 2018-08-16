@@ -1,5 +1,6 @@
 package com.dnjagi.carval.data;
 
+import com.dnjagi.carval.database.PersistAnnotation;
 import com.dnjagi.carval.model.DatabaseObject;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
 /**
  * Created by user on 7/30/2018.
  */
-
+@PersistAnnotation
 public class LogRecord extends DatabaseObject {
 
     @SerializedName("sent")

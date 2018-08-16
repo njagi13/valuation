@@ -1,5 +1,6 @@
 package com.dnjagi.carval;
 
+
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
@@ -12,13 +13,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dnjagi.carval.data.UploadRecord;
+import com.dnjagi.carval.global.GlobalVarible;
 import com.dnjagi.carval.utility.Utilities;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class CarValuationFragment extends Fragment
@@ -69,6 +78,7 @@ public class CarValuationFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Vehicle Details");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_car_valuation, container, false);
         mUploadRecord = new UploadRecord();
@@ -211,9 +221,27 @@ public class CarValuationFragment extends Fragment
                     mUploadRecord.Email = input_email.getText().toString();
                     mUploadRecord.DateOfReg = dateOfRegText.getText().toString();
                     mUploadRecord.UploadRecordID = UUID.randomUUID();
-                    //save locally
-                    mUploadRecord.save();
 
+                    setupGlobalUploadRecord(mUploadRecord);
+
+
+                   /* for (Field field : mUploadRecord.getClass().getDeclaredFields()) {
+                        field.setAccessible(true);
+                        String name = field.getName();
+                        Object value = field.get(mUploadRecord);
+                      if(name != "EngineSystemRec" || name != "TransmissionSystemRecordModel" || name != "SuspensionSystemRecordModel" || name != "BrakingSystemRecordModel" || name != "ImagesPath")
+                      {
+                          if(value == null)
+                          {
+                              Toast t = Toast.makeText(getContext() , name + " is required" , Toast.LENGTH_LONG);
+                              t.show();
+                          }
+                      }
+                    }*/
+
+                    //save locally
+                    //  mUploadRecord.save();
+                    // long tt = UploadRecord.count(UploadRecord.class);
                     fragment = new EngineSystemFragment();
                     replaceFragment(fragment);
                     break;
@@ -222,6 +250,32 @@ public class CarValuationFragment extends Fragment
             Utilities.LogException(ex);
         }
 
+    }
+
+    private void setupGlobalUploadRecord(UploadRecord mUploadRecord) {
+        try {
+            GlobalVarible.uploadRecord = new UploadRecord();
+            GlobalVarible.uploadRecord.Make = mUploadRecord.Make;
+            GlobalVarible.uploadRecord.Model = mUploadRecord.Model;
+            GlobalVarible.uploadRecord.RegistrationNumber = mUploadRecord.RegistrationNumber;
+            GlobalVarible.uploadRecord.Color = mUploadRecord.Color;
+            GlobalVarible.uploadRecord.OdomReading = mUploadRecord.OdomReading;
+            GlobalVarible.uploadRecord.YearOfManufacture = mUploadRecord.YearOfManufacture;
+            GlobalVarible.uploadRecord.PolicyNumber = mUploadRecord.PolicyNumber;
+            GlobalVarible.uploadRecord.InsExpiryDate = mUploadRecord.InsExpiryDate;
+            GlobalVarible.uploadRecord.ChassisNumber = mUploadRecord.ChassisNumber;
+            GlobalVarible.uploadRecord.EngineNumber = mUploadRecord.EngineNumber;
+            GlobalVarible.uploadRecord.EngineRating = mUploadRecord.EngineRating;
+            GlobalVarible.uploadRecord.FirstName = mUploadRecord.FirstName;
+            GlobalVarible.uploadRecord.LastName = mUploadRecord.LastName;
+            GlobalVarible.uploadRecord.PhoneNumber1 = mUploadRecord.PhoneNumber1;
+            GlobalVarible.uploadRecord.PhoneNumber2 = mUploadRecord.PhoneNumber2;
+            GlobalVarible.uploadRecord.Email = mUploadRecord.Email;
+            GlobalVarible.uploadRecord.DateOfReg = mUploadRecord.DateOfReg;
+            GlobalVarible.uploadRecord.UploadRecordID = mUploadRecord.UploadRecordID;
+        } catch (Exception ex) {
+            Utilities.LogException(ex);
+        }
     }
 
     public void replaceFragment(Fragment someFragment) {

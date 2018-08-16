@@ -43,7 +43,7 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Make"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Model"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -347,7 +347,6 @@
                         android:id="@+id/input_fname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="false"
                         android:hint="First Name"
                         android:inputType="text"
                         android:textSize="13dp" />
@@ -362,7 +361,6 @@
                         android:id="@+id/input_lname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="false"
                         android:hint="Last Name"
                         android:inputType="text"
                         android:textSize="13dp" />
@@ -387,7 +385,6 @@
                         android:id="@+id/input_phone1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="false"
                         android:hint="Phone1 #"
                         android:inputType="phone"
                         android:textSize="13dp" />
@@ -402,7 +399,6 @@
                         android:id="@+id/input_phone2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="false"
                         android:hint="Phone2 #"
                         android:inputType="phone"
                         android:textSize="13dp" />
@@ -420,7 +416,6 @@
                     android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:textSize="13dp" />

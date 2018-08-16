@@ -1,4 +1,6 @@
 package com.dnjagi.carval.global;
+import com.dnjagi.carval.data.UploadRecord;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,6 +10,7 @@ import java.util.Date;
  */
 
 public class GlobalVarible {
+    public static UploadRecord uploadRecord;
     public static String fileRoot = "root";
     public static String url = "http://afd3cc42.ngrok.io/";
     public static  String imgpath = "";
