@@ -89,7 +89,6 @@ public class CarValuationFragment extends Fragment
         input_odom = (EditText) view.findViewById(R.id.input_odom);
         input_yearOfManf = (EditText) view.findViewById(R.id.input_yearOfManf);
         input_policyNo = (EditText) view.findViewById(R.id.input_policyNo);
-
         input_chasisnumber = (EditText) view.findViewById(R.id.input_chasisnumber);
         input_enginenumber = (EditText) view.findViewById(R.id.input_enginenumber);
         input_engrating = (EditText) view.findViewById(R.id.input_engrating);
@@ -101,7 +100,30 @@ public class CarValuationFragment extends Fragment
         dateOfRegText = (EditText) view.findViewById(R.id.input_dateofreg);
         dateOfPolicyExpiryText = (EditText) view.findViewById(R.id.input_policyexpirydate);
 
+        if (GlobalVarible.uploadRecord != null) {
+            if (GlobalVarible.uploadRecord.UploadRecordID != null) {
+
+                input_make.setText(GlobalVarible.uploadRecord.Make);
+                input_model.setText(GlobalVarible.uploadRecord.Model);
+                input_regnumber.setText(GlobalVarible.uploadRecord.RegistrationNumber);
+                input_color.setText(GlobalVarible.uploadRecord.Color);
+                input_odom.setText(GlobalVarible.uploadRecord.OdomReading);
+                input_yearOfManf.setText(GlobalVarible.uploadRecord.YearOfManufacture);
+                input_policyNo.setText(GlobalVarible.uploadRecord.PolicyNumber);
+                input_chasisnumber.setText(GlobalVarible.uploadRecord.ChassisNumber);
+                input_enginenumber.setText(GlobalVarible.uploadRecord.EngineNumber);
+                input_engrating.setText(GlobalVarible.uploadRecord.EngineRating);
+                input_fname.setText(GlobalVarible.uploadRecord.FirstName);
+                input_lname.setText(GlobalVarible.uploadRecord.LastName);
+                input_phone1.setText(GlobalVarible.uploadRecord.PhoneNumber1);
+                input_phone2.setText(GlobalVarible.uploadRecord.PhoneNumber2);
+                dateOfRegText.setText(GlobalVarible.uploadRecord.DateOfReg);
+                dateOfPolicyExpiryText.setText(GlobalVarible.uploadRecord.Model);
+            }
+        }
+
         Button btnNext = (Button) view.findViewById(R.id.buttonNext);
+        Button btnCancel = (Button) view.findViewById(R.id.buttonCancelInvoice);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -154,6 +176,7 @@ public class CarValuationFragment extends Fragment
         });
 
         btnNext.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
         return view;
     }
 
@@ -245,6 +268,11 @@ public class CarValuationFragment extends Fragment
                     fragment = new EngineSystemFragment();
                     replaceFragment(fragment);
                     break;
+                case R.id.buttonCancelInvoice:
+                    GlobalVarible.uploadRecord = new UploadRecord();
+                    fragment = new HomeFragment();
+                    replaceFragment(fragment);
+                    break;
             }
         } catch (Exception ex) {
             Utilities.LogException(ex);
@@ -279,10 +307,14 @@ public class CarValuationFragment extends Fragment
     }
 
     public void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        try {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.mainFrame, someFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } catch (Exception ex) {
+            Utilities.LogException(ex);
+        }
     }
 
     public interface OnFragmentInteractionListener {

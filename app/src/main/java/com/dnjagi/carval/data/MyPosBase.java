@@ -13,19 +13,10 @@ import java.util.ArrayList;
 public class MyPosBase extends SugarRecord {
 
     boolean isSuccess = false;
-
-
-
-
-
     public static ArrayList<UserRecord> GetUserDetails() {
         ArrayList<UserRecord> result = (ArrayList<UserRecord>) UserRecord.findWithQuery(UserRecord.class, "Select * from USER_RECORD");
         return result;
     }
-
-
-
-
 }
 
 

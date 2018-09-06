@@ -154,7 +154,7 @@ public class UploadRecord extends DatabaseObject {
         return ImagesPath;
     }
 
-    @SerializedName("EngineSystemRec")
+    @SerializedName("EngineSystemRecordModel")
     public EngineSystemRecord EngineSystemRecordModel;
 
     @SerializedName("TransmissionSystemRecordModel")

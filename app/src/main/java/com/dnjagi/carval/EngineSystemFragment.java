@@ -79,13 +79,27 @@ public class EngineSystemFragment extends Fragment {
         input_comments = (EditText) view.findViewById(R.id.input_comments);
 
 
+        if (GlobalVarible.uploadRecord != null) {
+            if (GlobalVarible.uploadRecord.EngineSystemRecordModel != null) {
+                enginestartsproperly_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.StartsAndIdlesProperly);
+                mountingswornout_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.MountingsWornOut);
+                valvemechanism_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.ValveMechanismNoisy);
+                drivebelts_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.DriveBeltsLooseOrWornOut);
+                oilleaks_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.EngineLeaks);
+                rpm_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.EngineOperatesWellAtVariousRPM);
+                noiseinengine_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.EngineAbnormalVibration);
+                waterpump_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.WaterPumpOperateWell);
+                radiatorcap_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.RadiatorCapOperateWell);
+                enginecoolantlevel_switch.setChecked(GlobalVarible.uploadRecord.EngineSystemRecordModel.CoolantLevelCorrect);
+                input_comments.setText(GlobalVarible.uploadRecord.EngineSystemRecordModel.CommentsOnEngine);
+            }
+        }
+
         Button btnPrevious = view.findViewById(R.id.buttonBack);
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    //save values
-
                     Fragment fragment = new CarValuationFragment();
                     replaceFragment(fragment);
                 } catch (Exception ex) {
@@ -99,7 +113,6 @@ public class EngineSystemFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-
                     EngineSystemRecord engineSystemRecord = new EngineSystemRecord();
                     engineSystemRecord.StartsAndIdlesProperly = enginestartsproperly_switch.isChecked();
                     engineSystemRecord.MountingsWornOut = mountingswornout_switch.isChecked();

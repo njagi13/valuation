@@ -1,4 +1,5 @@
 package com.dnjagi.carval.global;
+
 import com.dnjagi.carval.data.UploadRecord;
 
 import java.text.ParseException;
@@ -12,9 +13,10 @@ import java.util.Date;
 public class GlobalVarible {
     public static UploadRecord uploadRecord;
     public static String fileRoot = "root";
-    public static String url = "http://afd3cc42.ngrok.io/";
-    public static  String imgpath = "";
+    public static String url = "http://09b2a1d5.ngrok.io/";
+    public static String imgpath = "";
     public static boolean RefreshGrid = false;
+    public static int RequiredImagesCount = 3;
 
     public static String parseDateToddMMyyyy(String time) {
         String inputPattern = "yyyy-MM-dd HH:mm:ss";

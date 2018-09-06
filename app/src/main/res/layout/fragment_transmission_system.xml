@@ -132,7 +132,7 @@
                 android:weightSum="1">
 
                 <Switch
-                    android:id="@+id/tsnoiseinengine_switch"
+                    android:id="@+id/tsdriveshaftcvjointwornout_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=" Are drive shaft cv joints worn out?"

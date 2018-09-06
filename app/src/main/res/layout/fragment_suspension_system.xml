@@ -118,7 +118,7 @@
                     android:id="@+id/sscollspringbroken_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" Are coll springs broken?"
+                    android:text=" Are coil springs broken?"
                     android:textOff="OFF"
                     android:textOn="ON" />
             </LinearLayout>

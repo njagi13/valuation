@@ -2,24 +2,29 @@ package com.dnjagi.carval;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.dnjagi.carval.data.ImagePathRecord;
+import com.dnjagi.carval.data.MyPosBase;
+import com.dnjagi.carval.data.UploadRecordAPI;
 import com.dnjagi.carval.global.GlobalVarible;
-import com.otaliastudios.cameraview.AspectRatio;
+import com.dnjagi.carval.utility.Utilities;
 import com.otaliastudios.cameraview.CameraUtils;
 
 import java.io.File;
@@ -31,18 +36,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
-public class PicturePreviewActivity extends Activity {
+import javax.microedition.khronos.opengles.GL;
+
+public class PicturePreviewActivity extends AppCompatActivity {
 
     private int count;
     private Bitmap[] thumbnails;
     private boolean[] thumbnailsselection;
     private String[] arrPath;
     private ImageAdapter imageAdapter;
-    ArrayList<String> f = new ArrayList<String>();// list of file paths
+    ArrayList<String> mFilePaths = new ArrayList<String>();// list of file paths
     File[] listFile;
-
+    Button buttonFinish;
+    ImageView addImage;
     private static WeakReference<byte[]> image;
 
     public static void setImage(@Nullable byte[] im) {
@@ -54,11 +61,7 @@ public class PicturePreviewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_preview);
         final ImageView imageView = findViewById(R.id.image);
-        //   final MessageView nativeCaptureResolution = findViewById(R.id.nativeCaptureResolution);
-        // final MessageView actualResolution = findViewById(R.id.actualResolution);
-        // final MessageView approxUncompressedSize = findViewById(R.id.approxUncompressedSize);
-        // final MessageView captureLatency = findViewById(R.id.captureLatency);
-
+        buttonFinish = (Button) findViewById(R.id.buttonFinish);
         final long delay = getIntent().getLongExtra("delay", 0);
         final int nativeWidth = getIntent().getIntExtra("nativeWidth", 0);
         final int nativeHeight = getIntent().getIntExtra("nativeHeight", 0);
@@ -67,6 +70,13 @@ public class PicturePreviewActivity extends Activity {
             finish();
             return;
         }
+        addImage = (ImageView) findViewById(R.id.addImage);
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     /*    if(GlobalVarible.RefreshGrid)
         {
@@ -86,8 +96,6 @@ public class PicturePreviewActivity extends Activity {
                 createFolders(bitmap);
                 // approxUncompressedSize.setTitle("Approx. uncompressed size");
                 // approxUncompressedSize.setMessage(getApproximateFileMegabytes(bitmap) + "MB");
-
-
                 getFromSdcard();
                 GridView imagegrid = (GridView) findViewById(R.id.PhoneImageGrid);
                 imageAdapter = new ImageAdapter();
@@ -99,6 +107,17 @@ public class PicturePreviewActivity extends Activity {
         SD_CARD_PATH = sharedPref.getString("sd_card_path", Environment
                 .getExternalStorageDirectory().getAbsolutePath());
 
+        buttonFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
+                uploadRecordAPI.CreateValuation(GlobalVarible.uploadRecord);
+
+              /*  GlobalVarible.imgpath = "";
+                GlobalVarible.uploadRecord = null;*/
+            }
+        });
+
     }
 
     private static final String BASE_FOLDER = "/Android/data/com.dnjagi.carval/files"; //possible fix for KitKat
@@ -109,55 +128,82 @@ public class PicturePreviewActivity extends Activity {
 
     private void createFolders(Bitmap imageToSave) {
         // create temp and fav folders
-        File mFolder = new File(SD_CARD_PATH + BASE_FOLDER + TEMP_FOLDER);
-        String fileName = "";
-
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("yyyyMMddHHmmss");
-        String strDate = mdformat.format(calendar.getTime());
-
-        fileName = strDate;
-        GlobalVarible.fileRoot = "KCC7874H";
-        mFolder = new File(SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + UUID.randomUUID().toString() + "_" + fileName + ".png");
-        if (!mFolder.exists()) {
-            mFolder.mkdirs();
-        }
-
-        if (mFolder.exists()) {
-            mFolder.delete();
-        }
-        GlobalVarible.imgpath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot;
         try {
-            FileOutputStream out = new FileOutputStream(mFolder);
-            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.flush();
-            out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            File mFolder = new File(SD_CARD_PATH + BASE_FOLDER + TEMP_FOLDER);
+            String fileName = "";
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat mdformat = new SimpleDateFormat("yyyyMMddHHmmss");
+            String strDate = mdformat.format(calendar.getTime());
+            fileName = strDate;
+            GlobalVarible.fileRoot = GlobalVarible.uploadRecord.RegistrationNumber;
+            String uploadId = GlobalVarible.uploadRecord.UploadRecordID.toString();
+            mFolder = new File(SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + uploadId + "_" + fileName + ".png");
+            if (!mFolder.exists()) {
+                mFolder.mkdirs();
+            }
+            if (mFolder.exists()) {
+                mFolder.delete();
+            }
+            GlobalVarible.imgpath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot;
+            ImagePathRecord imagePathRecord = new ImagePathRecord();
+            imagePathRecord.sent = 0;
+            imagePathRecord.ImagePath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + uploadId;
+            imagePathRecord.UploadRecordID = uploadId;
+            imagePathRecord.save();
+            long tt = ImagePathRecord.count(ImagePathRecord.class);
 
+            try {
+                FileOutputStream out = new FileOutputStream(mFolder);
+                imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            Utilities.LogException(e);
+        }
     }
 
 
-    public void getFromSdcard() {
+    public void deleteAllFiles() {
         File file = new File(GlobalVarible.imgpath);
-
         if (file.isDirectory()) {
             listFile = file.listFiles();
-
-
             for (int i = 0; i < listFile.length; i++) {
+                listFile[i].delete();
+            }
+        }
+    }
 
-                f.add(listFile[i].getAbsolutePath());
-
+    public void getFromSdcard() {
+        File file = new File(GlobalVarible.imgpath);
+        if (file.isDirectory()) {
+            listFile = file.listFiles();
+            if (listFile.length >= GlobalVarible.RequiredImagesCount) {
+                buttonFinish.setVisibility(View.VISIBLE);
+                addImage.setVisibility(View.INVISIBLE);
+            } else {
+                addImage.setVisibility(View.VISIBLE);
+                buttonFinish.setVisibility(View.INVISIBLE);
+            }
+            for (int i = 0; i < listFile.length; i++) {
+                mFilePaths.add(listFile[i].getAbsolutePath());
             }
         }
     }
 
     private static float getApproximateFileMegabytes(Bitmap bitmap) {
         return (bitmap.getRowBytes() * bitmap.getHeight()) / 1024 / 1024;
+    }
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.mainFrame, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 
@@ -169,7 +215,7 @@ public class PicturePreviewActivity extends Activity {
         }
 
         public int getCount() {
-            return f.size();
+            return mFilePaths.size();
         }
 
         public Object getItem(int position) {
@@ -192,14 +238,13 @@ public class PicturePreviewActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         int y = 0;
-                      String path =  f.get(position);
-
+                        String path = mFilePaths.get(position);
                         File fdelete = new File(path);
                         if (fdelete.exists()) {
                             if (fdelete.delete()) {
                                 System.out.println("file Deleted :" + path);
                             } else {
-                                System.out.println("file not Deleted :" +path);
+                                System.out.println("file not Deleted :" + path);
                             }
                         }
                         notifyDataSetChanged();
@@ -213,8 +258,7 @@ public class PicturePreviewActivity extends Activity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-
-            Bitmap myBitmap = BitmapFactory.decodeFile(f.get(position));
+            Bitmap myBitmap = BitmapFactory.decodeFile(mFilePaths.get(position));
             holder.imageview.setImageBitmap(myBitmap);
             return convertView;
         }

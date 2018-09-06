@@ -68,10 +68,15 @@ public class MainActivity extends AppCompatActivity
         appContext = getApplicationContext();
         SugarContext.init(getApplicationContext());
 
-        SchemaGenerator sg = new SchemaGenerator(getApplicationContext());
-        boolean isTableCreated = sg.tableExists(LogRecord.class, new SugarDb(getApplicationContext()).getDB());
+        SchemaGenerator schemaGenerator = new SchemaGenerator(getApplicationContext());
+        schemaGenerator.deleteTables(new SugarDb(getApplicationContext()).getDB());
+        SugarContext.init(getApplicationContext());
+
+        schemaGenerator.createDatabase(new SugarDb(getApplicationContext()).getDB());
+
+        boolean isTableCreated = schemaGenerator.tableExists(LogRecord.class, new SugarDb(getApplicationContext()).getDB());
         if (!isTableCreated) {
-            sg.createDatabase(new SugarDb(getApplicationContext()).getDB());
+            schemaGenerator.createDatabase(new SugarDb(getApplicationContext()).getDB());
         }
 
         // go to home page

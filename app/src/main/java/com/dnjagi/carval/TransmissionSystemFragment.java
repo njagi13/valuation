@@ -9,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
 
+import com.dnjagi.carval.data.TransmissionSystemRecord;
+import com.dnjagi.carval.global.GlobalVarible;
 import com.dnjagi.carval.utility.Utilities;
 
 
@@ -23,7 +27,12 @@ public class TransmissionSystemFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private Switch tsautomaticgearbox_switch, tstorqueconverter_switch, tsgearsynchromesh_switch,
+            tsgearjump_switch, tsclutchslip_switch, tsgearboxmounting_switch, tsdriveshaftcvjointwornout_switch, tsoilleaks_switch, tspropeliershaftbent_switch, tsdifferentialunity_switch;
+    private EditText tsinput_comments;
+
     private OnFragmentInteractionListener mListener;
+
 
     public TransmissionSystemFragment() {
         // Required empty public constructor
@@ -54,6 +63,34 @@ public class TransmissionSystemFragment extends Fragment {
         getActivity().setTitle("Transmission System Inspection");
         View view = inflater.inflate(R.layout.fragment_transmission_system, container, false);
 
+        tsautomaticgearbox_switch = (Switch) view.findViewById(R.id.tsautomaticgearbox_switch);
+        tstorqueconverter_switch = (Switch) view.findViewById(R.id.tstorqueconverter_switch);
+        tsgearsynchromesh_switch = (Switch) view.findViewById(R.id.tsgearsynchromesh_switch);
+        tsgearjump_switch = (Switch) view.findViewById(R.id.tsgearjump_switch);
+        tsclutchslip_switch = (Switch) view.findViewById(R.id.tsclutchslip_switch);
+        tsgearboxmounting_switch = (Switch) view.findViewById(R.id.tsgearboxmounting_switch);
+        tsdriveshaftcvjointwornout_switch = (Switch) view.findViewById(R.id.tsdriveshaftcvjointwornout_switch);
+        tsoilleaks_switch = (Switch) view.findViewById(R.id.tsoilleaks_switch);
+        tspropeliershaftbent_switch = (Switch) view.findViewById(R.id.tspropeliershaftbent_switch);
+        tsdifferentialunity_switch = (Switch) view.findViewById(R.id.tsdifferentialunity_switch);
+        tsinput_comments = (EditText) view.findViewById(R.id.tsinput_comments);
+
+        if (GlobalVarible.uploadRecord != null) {
+            if (GlobalVarible.uploadRecord.TransmissionSystemRecordModel != null) {
+                tsautomaticgearbox_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.AutomaticGearboxSmooth);
+                tstorqueconverter_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.EvidenceOfTorqueConverterSpin);
+                tsgearsynchromesh_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.ManualGearSynchromeshSmooth);
+                tsgearjump_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.AnyGearJumpOutOfMesh);
+                tsclutchslip_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.ClutchSlip);
+                tsgearboxmounting_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.GearBoxMountingsWornOut);
+                tsdriveshaftcvjointwornout_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.DriveShaftCVJointsWornOut);
+                tsoilleaks_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.FluidLeaksInTransmission);
+                tspropeliershaftbent_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.PropellerShaftBentOrWobling);
+                tsdifferentialunity_switch.setChecked(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.DifferentialUnityNoisy);
+                tsinput_comments.setText(GlobalVarible.uploadRecord.TransmissionSystemRecordModel.CommentsOnTransmission);
+            }
+        }
+
 
         Button btnPrevious = view.findViewById(R.id.tsbuttonBack);
         btnPrevious.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +110,21 @@ public class TransmissionSystemFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
+                    TransmissionSystemRecord transmissionSystemRecord = new TransmissionSystemRecord();
+                    transmissionSystemRecord.AutomaticGearboxSmooth = tsautomaticgearbox_switch.isChecked();
+                    transmissionSystemRecord.EvidenceOfTorqueConverterSpin = tstorqueconverter_switch.isChecked();
+                    transmissionSystemRecord.ManualGearSynchromeshSmooth = tsgearsynchromesh_switch.isChecked();
+                    transmissionSystemRecord.AnyGearJumpOutOfMesh = tsgearjump_switch.isChecked();
+                    transmissionSystemRecord.ClutchSlip = tsclutchslip_switch.isChecked();
+                    transmissionSystemRecord.GearBoxMountingsWornOut = tsgearboxmounting_switch.isChecked();
+                    transmissionSystemRecord.DriveShaftCVJointsWornOut = tsdriveshaftcvjointwornout_switch.isChecked();
+                    transmissionSystemRecord.FluidLeaksInTransmission = tsoilleaks_switch.isChecked();
+                    transmissionSystemRecord.PropellerShaftBentOrWobling = tspropeliershaftbent_switch.isChecked();
+                    transmissionSystemRecord.DifferentialUnityNoisy = tsdifferentialunity_switch.isChecked();
+                    transmissionSystemRecord.CommentsOnTransmission = tsinput_comments.getText().toString();
+                    transmissionSystemRecord.UploadRecordID = GlobalVarible.uploadRecord.UploadRecordID;
+                    GlobalVarible.uploadRecord.TransmissionSystemRecordModel = transmissionSystemRecord;
+
                     Fragment fragment = new SuspensionSystemFragment();
                     replaceFragment(fragment);
                 } catch (Exception ex) {
