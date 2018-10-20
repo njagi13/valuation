@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-import com.dnjagi.carval.model.DatabaseObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import com.dnjagi.carval.Model.DatabaseObject;
 
 import static com.dnjagi.carval.database.ReflectionUtil.getDomainClasses;
 
@@ -263,7 +264,7 @@ public class SchemaGenerator {
         for (String className : allClassNames) {
             Class dbClass = null;
             try {
-                if (className.startsWith("com.dnjagi.carval.data")) {
+                if (className.startsWith("com.meritatech.myrewardzpos.data")) {
                     dbClass = Class.forName(className);
 
                     if (DatabaseObject.class.isAssignableFrom(dbClass)

@@ -23,7 +23,8 @@ import android.widget.ImageView;
 import com.dnjagi.carval.data.ImagePathRecord;
 import com.dnjagi.carval.data.MyPosBase;
 import com.dnjagi.carval.data.UploadRecordAPI;
-import com.dnjagi.carval.global.GlobalVarible;
+import com.dnjagi.carval.Global.GlobalVarible;
+import com.dnjagi.carval.enums.eFileStatus;
 import com.dnjagi.carval.utility.Utilities;
 import com.otaliastudios.cameraview.CameraUtils;
 
@@ -110,14 +111,17 @@ public class PicturePreviewActivity extends AppCompatActivity {
         buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
-                uploadRecordAPI.CreateValuation(GlobalVarible.uploadRecord);
-
+                PostValuation();
+                // TODO: 10/20/2018 : Uncheck below code to clean up posted valuation
               /*  GlobalVarible.imgpath = "";
                 GlobalVarible.uploadRecord = null;*/
             }
         });
+    }
 
+    private void PostValuation() {
+        UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
+        uploadRecordAPI.CreateValuation(GlobalVarible.uploadRecord);
     }
 
     private static final String BASE_FOLDER = "/Android/data/com.dnjagi.carval/files"; //possible fix for KitKat
@@ -146,7 +150,8 @@ public class PicturePreviewActivity extends AppCompatActivity {
             }
             GlobalVarible.imgpath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot;
             ImagePathRecord imagePathRecord = new ImagePathRecord();
-            imagePathRecord.sent = 0;
+            //PENDING SUBMISSION SINCE USER HAS NOT CLICKED SEND
+            imagePathRecord.FileStatus = eFileStatus.PENDING_SUBMISSION;
             imagePathRecord.ImagePath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + uploadId;
             imagePathRecord.UploadRecordID = uploadId;
             imagePathRecord.save();

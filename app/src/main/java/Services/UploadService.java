@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
+import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.data.UploadRecord;
 import com.dnjagi.carval.data.UploadRecordAPI;
 import com.dnjagi.carval.database.SugarContext;
@@ -12,10 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static com.dnjagi.carval.MainActivity.appContext;
-
-/**
- * Created by user on 7/30/2018.
- */
 
 public class UploadService extends IntentService {
     @Override
@@ -27,7 +24,6 @@ public class UploadService extends IntentService {
             if (appContext != null) {
                 SugarContext.init(appContext);
             }
-
         }
         backgroundThreadFunc();
     }
@@ -38,12 +34,13 @@ public class UploadService extends IntentService {
     }
 
     Date nextPollInventory = null;
-    public final long MS_TO_MINS = 1000 * 60;
+    // poll after 5 secs
+    public final long MS_TO_MINS = 1000 * 5;
 
     public void pollPendingValuationImages() {
         try {
             Date now = new Date();
-            if (nextPollInventory == null || (now.getTime() > (nextPollInventory.getTime() + (MS_TO_MINS)))) {
+            if (GlobalVarible.hasActiveInternetConnection(getApplicationContext()) && nextPollInventory == null || (now.getTime() > (nextPollInventory.getTime() + (MS_TO_MINS)))) {
                 nextPollInventory = now;
                 UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
                 uploadRecordAPI.PostImages();

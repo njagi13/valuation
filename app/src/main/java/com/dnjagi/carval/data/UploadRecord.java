@@ -1,6 +1,6 @@
 package com.dnjagi.carval.data;
 
-import com.dnjagi.carval.model.DatabaseObject;
+import com.dnjagi.carval.Model.DatabaseObject;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.UUID;
@@ -141,11 +141,16 @@ public class UploadRecord extends DatabaseObject {
 
     @SerializedName("Email")
     public String Email;
-
     public String getEmail() {
         return Email;
     }
 
+
+    @SerializedName("RecommendedValue")
+    public int RecommendedValue;
+    public int getRecommendedValue() {
+        return RecommendedValue;
+    }
 
     @SerializedName("ImagesPath")
     public String ImagesPath;

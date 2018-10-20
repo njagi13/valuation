@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dnjagi.carval.data.UploadRecord;
-import com.dnjagi.carval.global.GlobalVarible;
+import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.utility.Utilities;
 
 import java.lang.reflect.Field;

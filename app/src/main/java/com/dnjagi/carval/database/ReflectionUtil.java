@@ -303,6 +303,7 @@ public class ReflectionUtil {
 
     private static List<String> getAllClasses(Context context) throws PackageManager.NameNotFoundException, IOException {
         String packageName = ManifestHelper.getDomainPackageName(context);
+
         List<String> classNames = new ArrayList<>();
         try {
             List<String> allClasses = MultiDexHelper.getAllClasses(context);

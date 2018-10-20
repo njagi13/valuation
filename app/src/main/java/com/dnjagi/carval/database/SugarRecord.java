@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteStatement;
 import android.text.TextUtils;
 import android.util.Log;
 
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+
+import com.dnjagi.carval.Model.DatabaseObject;
 
 import static com.dnjagi.carval.database.SugarContext.getSugarContext;
 
@@ -37,9 +38,11 @@ public class SugarRecord {
     public static <T> int deleteAll(Class<T> type, String whereClause, String... whereArgs) {
         return getSugarDataBase().delete(NamingHelper.toSQLName(type), whereClause, whereArgs);
     }
-    public static boolean checkIsOpen(){
-      return   getSugarDataBase().isWriteAheadLoggingEnabled();
+
+    public static boolean checkIsOpen() {
+        return getSugarDataBase().isWriteAheadLoggingEnabled();
     }
+
     public static <T> Cursor getCursor(Class<T> type, String whereClause, String[] whereArgs, String groupBy, String orderBy, String limit) {
         Cursor raw = getSugarDataBase().query(NamingHelper.toSQLName(type), null, whereClause, whereArgs,
                 groupBy, null, orderBy, limit);
@@ -145,7 +148,7 @@ public class SugarRecord {
     }
 
     //find by CustomerID
-    public static <T> T findByOrderID(Class<T> type, String customerId ) {
+    public static <T> T findByOrderID(Class<T> type, String customerId) {
         return findByOrderID(type, Long.valueOf(customerId));
     }
 
@@ -158,7 +161,7 @@ public class SugarRecord {
 
 
     //find by sent
-    public static <T> T findBySent(Class<T> type, Integer sent ) {
+    public static <T> T findBySent(Class<T> type, Integer sent) {
         return findBySennt(type, Long.valueOf(sent));
     }
 
@@ -178,6 +181,14 @@ public class SugarRecord {
     public static <T> T first(Class<T> type) {
         List<T> list = findWithQuery(type,
                 "SELECT * FROM " + NamingHelper.toSQLName(type) + " ORDER BY ID ASC LIMIT 1");
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    public static <T> T firstWhere(Class<T> type, String whereClause, String... whereArgs) {
+        List<T> list = find(type, whereClause, whereArgs);
         if (list.isEmpty()) {
             return null;
         }
@@ -240,6 +251,11 @@ public class SugarRecord {
             while (cursor.moveToNext()) {
                 entity = type.getDeclaredConstructor().newInstance();
                 inflate(cursor, entity, getSugarContext().getEntitiesMap());
+
+                if (entity instanceof DatabaseObject) {
+                    DatabaseObject cacheRecord = (DatabaseObject) entity;
+                    cacheRecord.afterLoad();
+                }
                 result.add(entity);
             }
         } catch (Exception e) {
@@ -547,7 +563,6 @@ public class SugarRecord {
     }
 
 
-
     @SuppressWarnings("deprecation")
     public static <T> T All(Class<T> type) {
         List<T> inventoryList = new ArrayList<>();
@@ -561,14 +576,10 @@ public class SugarRecord {
             }
 
             return (T) inventoryList;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
-
-
-
 
 
 }

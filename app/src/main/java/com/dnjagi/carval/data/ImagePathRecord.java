@@ -1,7 +1,7 @@
 package com.dnjagi.carval.data;
 
 import com.dnjagi.carval.database.PersistAnnotation;
-import com.dnjagi.carval.model.DatabaseObject;
+import com.dnjagi.carval.Model.DatabaseObject;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -13,10 +13,10 @@ import java.util.UUID;
 @PersistAnnotation
 public class ImagePathRecord extends DatabaseObject {
 
-    @SerializedName("sent")
-    public int sent;
-    public int getsent() {
-        return sent;
+    @SerializedName("FileStatus")
+    public int FileStatus;
+    public int FileStatus() {
+        return FileStatus;
     }
 
     @SerializedName("ImagePath")
@@ -27,7 +27,6 @@ public class ImagePathRecord extends DatabaseObject {
 
     @SerializedName("UploadRecordID")
     public String UploadRecordID;
-
     @Override
     public UUID getObjectID() {
         return null;

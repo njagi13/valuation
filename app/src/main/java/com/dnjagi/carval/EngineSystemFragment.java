@@ -14,8 +14,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.dnjagi.carval.data.EngineSystemRecord;
-import com.dnjagi.carval.global.GlobalVarible;
-import com.dnjagi.carval.model.EngineSystem;
+import com.dnjagi.carval.Global.GlobalVarible;
+import com.dnjagi.carval.Model.EngineSystem;
 import com.dnjagi.carval.utility.Utilities;
 
 

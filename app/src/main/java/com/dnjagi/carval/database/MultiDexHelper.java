@@ -8,6 +8,7 @@ import android.os.Build;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -80,24 +81,17 @@ public class MultiDexHelper {
      */
     public static List<String> getAllClasses(Context context) throws PackageManager.NameNotFoundException, IOException {
         List<String> classNames = new ArrayList<>();
-        for (String path : getSourcePaths(context)) {
-            try {
-                DexFile dexfile;
-                if (path.endsWith(EXTRACTED_SUFFIX)) {
-                    //NOT use new DexFile(path), because it will throw "permission error in /data/dalvik-cache"
-                    dexfile = DexFile.loadDex(path, path + ".tmp", 0);
-                } else {
-                    dexfile = new DexFile(path);
-                }
-                Enumeration<String> dexEntries = dexfile.entries();
-                while (dexEntries.hasMoreElements()) {
-                    classNames.add(dexEntries.nextElement());
-                }
-            } catch (IOException e) {
-                throw new IOException("Error at loading dex file '" +
-                        path + "'");
+
+        try {
+            DexFile df = new DexFile(context.getPackageCodePath());
+            for (Enumeration<String> iter = df.entries(); iter.hasMoreElements();) {
+                String s = iter.nextElement();
+                classNames.add(s);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return classNames;
     }
 }

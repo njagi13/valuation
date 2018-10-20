@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.dnjagi.carval.data.TransmissionSystemRecord;
-import com.dnjagi.carval.global.GlobalVarible;
+import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.utility.Utilities;
 
 

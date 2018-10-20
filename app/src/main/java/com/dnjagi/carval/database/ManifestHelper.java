@@ -85,7 +85,7 @@ public class ManifestHelper {
         return getMetaDataBoolean(context, METADATA_QUERY_LOG);
     }
 
-    private static String getMetaDataString(Context context, String name) {
+    public static String getMetaDataString(Context context, String name) {
         String value = null;
 
         PackageManager pm = context.getPackageManager();

@@ -1,6 +1,6 @@
 package com.dnjagi.carval.data;
 
-import com.dnjagi.carval.global.GlobalVarible;
+import com.dnjagi.carval.Global.GlobalVarible;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

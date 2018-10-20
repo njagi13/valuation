@@ -1,4 +1,4 @@
-package com.dnjagi.carval.model;
+package com.dnjagi.carval.Model;
 
 import com.google.gson.annotations.SerializedName;
 
