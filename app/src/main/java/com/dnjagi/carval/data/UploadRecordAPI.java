@@ -1,5 +1,6 @@
 package com.dnjagi.carval.data;
 
+import android.provider.FontRequest;
 import android.util.Log;
 import com.dnjagi.carval.Interface.IPosServicesInterface;
 import com.dnjagi.carval.Interface.IUploadRecordInterface;
@@ -38,15 +39,16 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                     if (file.exists()) {
                         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
                         MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
-
                         //THIS IS THE UPLOAD ID
                         String json = UUID.randomUUID().toString();
                         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), json);
                         retrofit2.Call<okhttp3.ResponseBody> req = inventoryInterface.postImage(body, name);
                         Response<ResponseBody> response = req.execute();
                         if (response.isSuccessful()) {
-//todo:  Update Table on sent Rec
-                            int res = 1;
+                            //UPDATE STATUS AFTER POST  ////
+                            ImagePathRecord sentRec = myPosBase.GetUnsentUploadRecordByID(unsentImages.get(i).getId().intValue());
+                            sentRec.FileStatus = eFileStatus.PENDING_POST;
+                            sentRec.save();
                         } else {
                             Utilities.LogException(new Exception("Error posting record!"));
                         }
@@ -70,9 +72,16 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                 public void onResponse(Call<UploadRecord> call, Response<UploadRecord> response) {
                     if (response.isSuccessful()) {
                         // CHANGE STATUS TO READY FOR SUBMISSION FOR IMAGES TO BE SENT TO SERVER
-                        ImagePathRecord postedImagePathRecord = myPosBase.GetUnsentUploadRecordByID(uploadRecord.UploadRecordID.toString());
-                        postedImagePathRecord.FileStatus = eFileStatus.PENDING_SUBMISSION;
-                        postedImagePathRecord.save();
+                        ArrayList<ImagePathRecord> postedImagePathRecord = myPosBase.GetUnsentUploadRecords(uploadRecord.UploadRecordID.toString());
+                            for (int i = 0; i< postedImagePathRecord.size(); i++)
+                            {
+                                postedImagePathRecord.get(i).FileStatus = eFileStatus.PENDING_SUBMISSION;
+                                postedImagePathRecord.get(i).save();
+                            }
+
+                            // confirm
+                        ArrayList<ImagePathRecord> arechanged = myPosBase.GetUnsentUploadRecords(uploadRecord.UploadRecordID.toString());
+
                     } else {
                         Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));
                     }

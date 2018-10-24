@@ -32,6 +32,10 @@
             android:name=".PicturePreviewActivity"
             android:label="@string/title_activity_picture_preview"
             android:theme="@style/AppTheme"></activity>
+        <service
+            android:name="com.dnjagi.carval.Services.UploadService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

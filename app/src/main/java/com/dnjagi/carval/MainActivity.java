@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -27,10 +26,7 @@ import com.dnjagi.carval.database.SchemaGenerator;
 import com.dnjagi.carval.database.SugarContext;
 import com.dnjagi.carval.database.SugarDb;
 
-import java.net.URL;
-import java.util.Enumeration;
-
-import Services.UploadService;
+import com.dnjagi.carval.Services.UploadService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -73,7 +69,6 @@ public class MainActivity extends AppCompatActivity
             schemaGenerator.deleteTables(new SugarDb(getApplicationContext()).getDB());
             SugarContext.init(getApplicationContext());
             schemaGenerator.createDatabase(new SugarDb(getApplicationContext()).getDB());
-
         }
 
         //when need to clean up database
@@ -84,8 +79,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         //Start background services
-        Intent intent = new Intent(MainActivity.this, UploadService.class);
-        startService(intent);
+        startService(new Intent(appContext, UploadService.class));
+
 
         // go to home page
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

@@ -1,20 +1,20 @@
-package Services;
+package com.dnjagi.carval.Services;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
 import com.dnjagi.carval.Global.GlobalVarible;
-import com.dnjagi.carval.data.UploadRecord;
 import com.dnjagi.carval.data.UploadRecordAPI;
 import com.dnjagi.carval.database.SugarContext;
+import com.dnjagi.carval.utility.Utilities;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import static com.dnjagi.carval.MainActivity.appContext;
 
 public class UploadService extends IntentService {
+    static boolean IsRunning;
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         if (appContext != null) {
@@ -25,6 +25,7 @@ public class UploadService extends IntentService {
                 SugarContext.init(appContext);
             }
         }
+        IsRunning = true;
         backgroundThreadFunc();
     }
 
@@ -46,11 +47,11 @@ public class UploadService extends IntentService {
                 uploadRecordAPI.PostImages();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Utilities.LogException(e);
         }
     }
 
-    static boolean IsRunning;
+
 
     void backgroundThreadFunc() {
         while (IsRunning == true) {

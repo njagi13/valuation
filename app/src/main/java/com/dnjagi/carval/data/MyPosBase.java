@@ -21,13 +21,24 @@ public class MyPosBase extends SugarRecord {
     }
 
 
-    public static ImagePathRecord GetUnsentUploadRecordByID(String uploadRecordID) {
-        ImagePathRecord result = (ImagePathRecord) SugarRecord.find(ImagePathRecord.class, "UPLOAD_RECORD_ID = ?", uploadRecordID);
+    public static ImagePathRecord GetUnsentUploadRecordByID(int recordID) {
+        ImagePathRecord result = (ImagePathRecord) SugarRecord.findById(ImagePathRecord.class, recordID);
+        return result;
+    }
+
+
+    public static ArrayList<ImagePathRecord> GetUnsentUploadRecords(String uploadRecordID) {
+        ArrayList<ImagePathRecord> result = (ArrayList<ImagePathRecord>) SugarRecord.find(ImagePathRecord.class, "UPLOAD_RECORD_ID = ?", uploadRecordID);
+        return result;
+    }
+
+    public static ArrayList<ImagePathRecord> GetUnsentUploads() {
+        ArrayList<ImagePathRecord> result = (ArrayList<ImagePathRecord>) SugarRecord.find(ImagePathRecord.class, "FILE_STATUS = ?", String.valueOf(eFileStatus.PENDING_SUBMISSION));
         return result;
     }
 
     public static ArrayList<ImagePathRecord> GetReadyToSendUploads() {
-        ArrayList<ImagePathRecord> result = (ArrayList<ImagePathRecord>) SugarRecord.find(ImagePathRecord.class, "UPLOAD_RECORD_ID = ?", String.valueOf(eFileStatus.PENDING_POST));
+        ArrayList<ImagePathRecord> result = (ArrayList<ImagePathRecord>) SugarRecord.find(ImagePathRecord.class, "FILE_STATUS = ?", String.valueOf(eFileStatus.PENDING_POST));
         return result;
     }
 }
