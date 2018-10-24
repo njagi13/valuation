@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Car Valuation" />
         <item
-            android:id="@+id/accident_assessment"
+            android:id="@+id/ocr"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Accident Assessment" />
+            android:title="OCR" />
         <item
             android:id="@+id/reports"
             android:icon="@drawable/ic_menu_slideshow"

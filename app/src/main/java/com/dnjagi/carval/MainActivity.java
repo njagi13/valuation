@@ -150,8 +150,10 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         if (id == R.id.car_valuation) {
             fragment = new CarValuationFragment();
-        } else if (id == R.id.accident_assessment) {
-            fragment = new AccidentAssessmentFragment();
+        } else if (id == R.id.ocr) {
+            //fragment = new AccidentAssessmentFragment();
+            Intent intent = new Intent(this, OcrCaptureActivity.class);
+            startActivity(intent);
         } else if (id == R.id.reports) {
             fragment = new ReportsFragment();
         }
