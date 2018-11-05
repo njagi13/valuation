@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class UploadRecord extends DatabaseObject {
     @SerializedName("UploadRecordID")
-    public UUID UploadRecordID;
+    public UUID     UploadRecordID;
 
     @SerializedName("Make")
     public String Make;

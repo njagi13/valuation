@@ -1,7 +1,7 @@
 package com.dnjagi.carval;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,10 +20,9 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.dnjagi.carval.data.ImagePathRecord;
-import com.dnjagi.carval.data.MyPosBase;
-import com.dnjagi.carval.data.UploadRecordAPI;
 import com.dnjagi.carval.Global.GlobalVarible;
+import com.dnjagi.carval.data.ImagePathRecord;
+import com.dnjagi.carval.data.UploadRecordAPI;
 import com.dnjagi.carval.enums.eFileStatus;
 import com.dnjagi.carval.utility.Utilities;
 import com.otaliastudios.cameraview.CameraUtils;
@@ -38,23 +37,30 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.microedition.khronos.opengles.GL;
-
 public class PicturePreviewActivity extends AppCompatActivity {
 
+    private static final String BASE_FOLDER = "/Android/data/com.dnjagi.carval/files"; //possible fix for KitKat
+    private static final String FAV_FOLDER = "/fav/";
+    private static final String TEMP_FOLDER = "/temp/";
+    private static final String SERIALIZED_FOLDER = "/upload/";
+    private static WeakReference<byte[]> image;
+    private static String SD_CARD_PATH;
+    ArrayList<String> mFilePaths = new ArrayList<String>();// list of file paths
+    File[] listFile;
+    Button buttonFinish;
+    ImageView addImage;
     private int count;
     private Bitmap[] thumbnails;
     private boolean[] thumbnailsselection;
     private String[] arrPath;
     private ImageAdapter imageAdapter;
-    ArrayList<String> mFilePaths = new ArrayList<String>();// list of file paths
-    File[] listFile;
-    Button buttonFinish;
-    ImageView addImage;
-    private static WeakReference<byte[]> image;
 
     public static void setImage(@Nullable byte[] im) {
         image = im != null ? new WeakReference<>(im) : null;
+    }
+
+    private static float getApproximateFileMegabytes(Bitmap bitmap) {
+        return (bitmap.getRowBytes() * bitmap.getHeight()) / 1024 / 1024;
     }
 
     @Override
@@ -113,8 +119,10 @@ public class PicturePreviewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 PostValuation();
                 // TODO: 10/20/2018 : Uncheck below code to clean up posted valuation
-              /*  GlobalVarible.imgpath = "";
-                GlobalVarible.uploadRecord = null;*/
+                GlobalVarible.imgpath = "";
+                GlobalVarible.uploadRecord = null;
+                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(myIntent);
             }
         });
     }
@@ -124,19 +132,13 @@ public class PicturePreviewActivity extends AppCompatActivity {
         uploadRecordAPI.CreateValuation(GlobalVarible.uploadRecord);
     }
 
-    private static final String BASE_FOLDER = "/Android/data/com.dnjagi.carval/files"; //possible fix for KitKat
-    private static final String FAV_FOLDER = "/fav/";
-    private static final String TEMP_FOLDER = "/temp/";
-    private static final String SERIALIZED_FOLDER = "/upload/";
-    private static String SD_CARD_PATH;
-
     private void createFolders(Bitmap imageToSave) {
         // create temp and fav folders
         try {
             File mFolder = new File(SD_CARD_PATH + BASE_FOLDER + TEMP_FOLDER);
             String fileName = "";
             Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat mdformat = new SimpleDateFormat("yyyyMMddHHmmss");
+            SimpleDateFormat mdformat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
             String strDate = mdformat.format(calendar.getTime());
             fileName = strDate;
             GlobalVarible.fileRoot = GlobalVarible.uploadRecord.RegistrationNumber;
@@ -152,10 +154,11 @@ public class PicturePreviewActivity extends AppCompatActivity {
             ImagePathRecord imagePathRecord = new ImagePathRecord();
             //PENDING SUBMISSION SINCE USER HAS NOT CLICKED SEND
             imagePathRecord.FileStatus = eFileStatus.PENDING_SUBMISSION;
-            imagePathRecord.ImagePath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + uploadId;
+            imagePathRecord.ImagePath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + GlobalVarible.fileRoot + "/" + uploadId+ "_";
+           imagePathRecord.FileName  =  fileName;
             imagePathRecord.UploadRecordID = uploadId;
             imagePathRecord.save();
-            long tt = ImagePathRecord.count(ImagePathRecord.class);
+            ArrayList<ImagePathRecord> tt = ImagePathRecord.findAllRecords(ImagePathRecord.class);
 
             try {
                 FileOutputStream out = new FileOutputStream(mFolder);
@@ -167,11 +170,12 @@ public class PicturePreviewActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
         } catch (Exception e) {
             Utilities.LogException(e);
         }
     }
-
 
     public void deleteAllFiles() {
         File file = new File(GlobalVarible.imgpath);
@@ -198,10 +202,6 @@ public class PicturePreviewActivity extends AppCompatActivity {
                 mFilePaths.add(listFile[i].getAbsolutePath());
             }
         }
-    }
-
-    private static float getApproximateFileMegabytes(Bitmap bitmap) {
-        return (bitmap.getRowBytes() * bitmap.getHeight()) / 1024 / 1024;
     }
 
     public void replaceFragment(Fragment someFragment) {

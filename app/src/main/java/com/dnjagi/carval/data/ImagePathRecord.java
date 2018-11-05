@@ -4,6 +4,8 @@ import com.dnjagi.carval.database.PersistAnnotation;
 import com.dnjagi.carval.Model.DatabaseObject;
 import com.google.gson.annotations.SerializedName;
 
+import org.w3c.dom.Text;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,9 +23,9 @@ public class ImagePathRecord extends DatabaseObject {
 
     @SerializedName("ImagePath")
     public String ImagePath;
-    public String getImagePath() {
-        return ImagePath;
-    }
+
+    @SerializedName("FileName")
+    public String FileName;
 
     @SerializedName("UploadRecordID")
     public String UploadRecordID;

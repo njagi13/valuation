@@ -35,8 +35,8 @@ public class UploadService extends IntentService {
     }
 
     Date nextPollInventory = null;
-    // poll after 5 secs
-    public final long MS_TO_MINS = 1000 * 5;
+    // poll after 20 secs
+    public final long MS_TO_MINS = 1000 * 20;
 
     public void pollPendingValuationImages() {
         try {
