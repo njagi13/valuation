@@ -43,7 +43,8 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Make"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="10"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -69,7 +70,8 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Model"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="20"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -94,8 +96,9 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Reg Number"
-                        android:inputType="text"
-                        android:textSize="13dp" />
+                        android:inputType="textCapCharacters"
+                        android:maxLength="7"
+                        android:textSize="15dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -120,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Color"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -147,6 +150,7 @@
                         android:enabled="true"
                         android:hint="Odom. Reading(Kms/Ms./Hrs.)"
                         android:inputType="number"
+                        android:maxLength="7"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -174,6 +178,7 @@
                         android:enabled="true"
                         android:hint="Year Of Manf."
                         android:inputType="number"
+                        android:maxLength="4"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -224,7 +229,8 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Ins.Company/Policy No."
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="10"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -275,7 +281,8 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Chasis Number"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="15"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -300,7 +307,8 @@
                         android:layout_height="wrap_content"
                         android:enabled="true"
                         android:hint="Eng. Number"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="15"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -324,8 +332,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="true"
-                        android:hint="Engine Rating"
-                        android:inputType="text"
+                        android:hint="Engine Rating (CC)"
+                        android:inputType="number"
+                        android:maxLength="5"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -348,7 +357,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="First Name"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="10"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -362,7 +372,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Last Name"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="10"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -385,8 +396,9 @@
                         android:id="@+id/input_phone1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Phone1 #"
+                        android:hint="Mobile #."
                         android:inputType="phone"
+                        android:maxLength="10"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -399,8 +411,9 @@
                         android:id="@+id/input_phone2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Phone2 #"
+                        android:hint="Phone #"
                         android:inputType="phone"
+                        android:maxLength="15"
                         android:textSize="13dp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>

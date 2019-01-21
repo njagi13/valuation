@@ -1,8 +1,7 @@
 package com.dnjagi.carval.data;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.dnjagi.carval.Interface.IPosServicesInterface;
 import com.dnjagi.carval.Interface.IUploadRecordInterface;
@@ -35,7 +34,6 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                     ApiClient.getClient().create(IPosServicesInterface.class);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetReadyToSendUploads();
-            ArrayList<ImagePathRecord> all = ImagePathRecord.findAllRecords(ImagePathRecord.class);
             if (unsentImages != null && unsentImages.size() > 0) {
                 for (int i = 0; i < unsentImages.size(); i++) {
                     filePath = unsentImages.get(i).ImagePath + unsentImages.get(i).FileName + ".png";
@@ -56,17 +54,66 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         Response<ResponseBody> response = req.execute();
                         if (response.isSuccessful()) {
                             //UPDATE STATUS AFTER POST  ////
-                            ImagePathRecord imagePathRecord = unsentImages.get(i);
-                            imagePathRecord.FileStatus = eFileStatus.SENT;
-                            imagePathRecord.save();
-
+                            unsentImages.get(i).FileStatus = eFileStatus.SENT;
+                            unsentImages.get(i).save();
                             ArrayList<ImagePathRecord> tt = ImagePathRecord.findAllRecords(ImagePathRecord.class);
-
+                            Log.e("list", tt.toString());
                         } else {
                             Utilities.LogException(new Exception("Error posting record!"));
                         }
                     }
                 }
+            }
+
+
+        } catch (Exception ex) {
+            Utilities.LogException(ex);
+        }
+    }
+
+    public void postImagesByUploadId(String uploadRecordId) {
+        try {
+            IPosServicesInterface inventoryInterface =
+                    ApiClient.getClient().create(IPosServicesInterface.class);
+            String filePath = "";
+            ArrayList<ImagePathRecord> unsentImages = myPosBase.GetImageUploadsByUploadRecordId(uploadRecordId);
+            if (unsentImages != null && unsentImages.size() > 0) {
+                for (int i = 0; i < unsentImages.size(); i++) {
+                    filePath = unsentImages.get(i).ImagePath + unsentImages.get(i).FileName + ".png";
+                    String uploadRecordID = unsentImages.get(i).UploadRecordID;
+                    File file = new File(filePath);
+                    if (file.exists()) {
+                        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+                        MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
+                        //THIS IS THE UPLOAD ID
+                        String json = UUID.randomUUID().toString();
+                        //lock image for posting to disable multipost of same item
+                        ImagePathRecord sentRec = ImagePathRecord.findById(ImagePathRecord.class, unsentImages.get(i).getId());
+                        sentRec.FileStatus = eFileStatus.LOCKED;
+                        sentRec.save();
+
+                        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), json);
+                        retrofit2.Call<okhttp3.ResponseBody> req = inventoryInterface.postImage(body, name);
+                        req.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+
+                                } else {
+                                    Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                // something went completely south (like no internet connection)
+                                Utilities.LogException(new Exception("Error posting image!"));
+                            }
+                        });
+                    }
+                }
+                //todo: SAVE STATUS AS SENT WHEN USING A BACKEND SERVICE
+             //    myPosBase.UpDateUploadStatus(uploadRecordId, eFileStatus.SENT);
+
             }
 
 
@@ -86,26 +133,14 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                     if (response.isSuccessful()) {
                         // CHANGE STATUS TO READY FOR SUBMISSION FOR IMAGES TO BE SENT TO SERVER
 
-
-                        Handler handler = new Handler(Looper.getMainLooper());
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                ArrayList<ImagePathRecord> postedImagePathRecord = myPosBase.GetUnsentUploadRecords(uploadRecord.UploadRecordID.toString());
-                                myPosBase.UpDateUnsentUploadRecords(uploadRecord.UploadRecordID.toString());
-//                                for (int i = 0; i < postedImagePathRecord.size(); i++)
-//                                {
-//                                    ImagePathRecord imagePathRecord = ImagePathRecord.findById(ImagePathRecord.class,postedImagePathRecord.get(i).getId());
-//                                    imagePathRecord.FileStatus = eFileStatus.PENDING_POST;
-//                                    imagePathRecord.FileName = postedImagePathRecord.get(i).FileName;
-//                                    imagePathRecord.save();
-//                                }
-                                // confirm
-                                ArrayList<ImagePathRecord> arechanged = ImagePathRecord.findAllRecords(ImagePathRecord.class);
-                                int y = 0;
-
-                            }
-                        });
+                        ArrayList<ImagePathRecord> postedImagePathRecord = myPosBase.GetUnsentUploadRecords(uploadRecord.UploadRecordID.toString());
+                        myPosBase.UpDateUploadStatus(uploadRecord.UploadRecordID.toString(), eFileStatus.PENDING_POST);
+                        //todo: post the images asynchronously // change to backend service later
+                        UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
+                        uploadRecordAPI.postImagesByUploadId(uploadRecord.UploadRecordID.toString());
+                        // confirm
+                        ArrayList<ImagePathRecord> arechanged = ImagePathRecord.findAllRecords(ImagePathRecord.class);
+                        int y = 0;
 
                     } else {
                         Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));

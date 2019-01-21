@@ -32,8 +32,8 @@ public class MyPosBase extends SugarRecord {
         return result;
     }
 
-    public static void UpDateUnsentUploadRecords(String uploadRecordID) {
-        SugarRecord.executeQuery("UPDATE IMAGE_PATH_RECORD SET FILE_STATUS = 1 WHERE  UPLOAD_RECORD_ID = ?", uploadRecordID);
+    public static void UpDateUploadStatus(String uploadRecordID , int postStatus) {
+        SugarRecord.executeQuery("UPDATE IMAGE_PATH_RECORD SET FILE_STATUS ="+ postStatus +" WHERE  UPLOAD_RECORD_ID = ?", uploadRecordID);
     }
 
 
@@ -47,6 +47,13 @@ public class MyPosBase extends SugarRecord {
         ArrayList<ImagePathRecord> result = (ArrayList<ImagePathRecord>) SugarRecord.find(ImagePathRecord.class, "FILE_STATUS = ?", String.valueOf(eFileStatus.PENDING_POST));
         return result;
     }
+
+    public static ArrayList<ImagePathRecord> GetImageUploadsByUploadRecordId(String uploadID) {
+        ArrayList<ImagePathRecord> result = (ArrayList<ImagePathRecord>) SugarRecord.find(ImagePathRecord.class, "UPLOAD_RECORD_ID = ?", uploadID);
+        return result;
+    }
+
+
 }
 
 

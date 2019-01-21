@@ -148,7 +148,7 @@ public class PicturePreviewActivity extends AppCompatActivity {
                 mFolder.mkdirs();
             }
             if (mFolder.exists()) {
-                mFolder.delete();
+               mFolder.delete();
             }
             GlobalVarible.imgpath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot;
             ImagePathRecord imagePathRecord = new ImagePathRecord();
