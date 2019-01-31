@@ -20,11 +20,24 @@ public class LoginRecordAPI {
                     ApiClient.getClient().create(ILoginInterface.class);
             Call<ResponseBody> req = iLoginInterface.loginUser(loginRecord.email , loginRecord.password);
 
-            Response<ResponseBody> response = req.execute();
-          if(response.isSuccessful())
-          {
-              IsLogged[0] = false;
-          }
+
+            req.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        IsLogged[0] = true;
+                    } else {
+                        Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));
+                        IsLogged[0] = false;
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    IsLogged[0] = false;
+                    Log.d("Error", t.getMessage());
+                }
+            });
         } catch (Exception e) {
             Utilities.LogException(e);
         }
