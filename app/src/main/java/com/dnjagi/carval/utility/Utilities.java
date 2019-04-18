@@ -9,6 +9,7 @@ import java.util.Date;
  */
 
 public class Utilities {
+    public static String IMEI = "";
     public  static  void LogException(Exception ex)
     {
         LogRecord lr = new LogRecord();

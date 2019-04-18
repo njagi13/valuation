@@ -1,12 +1,16 @@
 package com.dnjagi.carval;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -16,7 +20,9 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,11 +34,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.data.LoginRecord;
 import com.dnjagi.carval.data.LoginRecordAPI;
+import com.dnjagi.carval.utility.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -68,6 +77,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        SharedPreferences preferences = getSharedPreferences(GlobalVarible.LoggedIn, getApplicationContext().MODE_PRIVATE);
+        String token = preferences.getString("Token", null);
+        if (preferences.getLong("ExpiredDate", -1) > System.currentTimeMillis()) {
+            if(token != null)
+            {
+                GlobalVarible.token = token;
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return;
+            }
+        } else {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+        }
+
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -95,6 +123,34 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
+
+    public boolean isPermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE )
+                    == PackageManager.PERMISSION_GRANTED && checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION )
+                    == PackageManager.PERMISSION_GRANTED  && checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION )
+                    == PackageManager.PERMISSION_GRANTED ){
+                TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+
+                String IMEI_Number;
+
+                if (Build.VERSION.SDK_INT >= 26) {
+
+                    IMEI_Number = telephonyManager.getImei();
+                } else {
+                    IMEI_Number = telephonyManager.getDeviceId();
+                }
+                Utilities.IMEI = IMEI_Number;
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE ,Manifest.permission.ACCESS_COARSE_LOCATION ,Manifest.permission.ACCESS_FINE_LOCATION }, 1);
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
@@ -279,8 +335,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
-    }
 
+    }
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -306,16 +362,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mPassword = password;
         }
 
+
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
+            showProgress(true);
             LoginRecord loginRecord = new LoginRecord();
             loginRecord.email = mEmail;
             loginRecord.password = mPassword;
-            LoginRecordAPI loginRecordAPI = new LoginRecordAPI();
+
+            LoginRecordAPI loginRecordAPI = new LoginRecordAPI(getApplicationContext(), LoginActivity.this);
             Boolean isLoggedIn = loginRecordAPI.LoginUser(loginRecord);
             if (isLoggedIn) {
+                showProgress(false);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
