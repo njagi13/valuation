@@ -3,6 +3,7 @@ package com.dnjagi.carval;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -244,6 +245,8 @@ public class CarValuationFragment extends Fragment
                     mUploadRecord.Email = input_email.getText().toString();
                     mUploadRecord.DateOfReg = dateOfRegText.getText().toString();
                     mUploadRecord.UploadRecordID = UUID.randomUUID();
+                    SharedPreferences preferences = getActivity().getSharedPreferences(GlobalVarible.LoggedIn, getActivity().getApplicationContext().MODE_PRIVATE);
+                    mUploadRecord.ValuerEmail = preferences.getString("Email", null);
 
                     setupGlobalUploadRecord(mUploadRecord);
 
@@ -301,6 +304,7 @@ public class CarValuationFragment extends Fragment
             GlobalVarible.uploadRecord.Email = mUploadRecord.Email;
             GlobalVarible.uploadRecord.DateOfReg = mUploadRecord.DateOfReg;
             GlobalVarible.uploadRecord.UploadRecordID = mUploadRecord.UploadRecordID;
+            GlobalVarible.uploadRecord.ValuerEmail =  mUploadRecord.ValuerEmail;
         } catch (Exception ex) {
             Utilities.LogException(ex);
         }

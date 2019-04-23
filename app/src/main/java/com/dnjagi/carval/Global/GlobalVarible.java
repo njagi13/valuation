@@ -21,13 +21,13 @@ import java.util.Date;
 public class GlobalVarible {
     public static UploadRecord uploadRecord;
     public static String fileRoot = "root";
-    public static String url = "http://3b84a8b8.ngrok.io/";
+    public static String url = "http://27ea4bcc.ngrok.io/";
     public static String imgpath = "";
     public static boolean RefreshGrid = false;
     public static int RequiredImagesCount = 3;
     public static String LoggedIn = "LoggedIn";
     public static String token ;
-
+    public static String email ;
     public static String parseDateToddMMyyyy(String time) {
         String inputPattern = "yyyy-MM-dd HH:mm:ss";
         String outputPattern = "dd-MMM-yyyy h:mm a";

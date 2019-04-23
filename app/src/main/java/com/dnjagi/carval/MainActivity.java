@@ -3,6 +3,7 @@ package com.dnjagi.carval;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -21,12 +22,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.data.LogRecord;
 import com.dnjagi.carval.database.SchemaGenerator;
 import com.dnjagi.carval.database.SugarContext;
 import com.dnjagi.carval.database.SugarDb;
 
 import com.dnjagi.carval.Services.UploadService;
+
+import static com.google.android.gms.flags.impl.SharedPreferencesFactory.getSharedPreferences;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -60,6 +64,23 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //SET TOKEN
+        SharedPreferences preferences = getSharedPreferences(GlobalVarible.LoggedIn, getApplicationContext().MODE_PRIVATE);
+        GlobalVarible.token = preferences.getString("Token", null);
+        GlobalVarible.email = preferences.getString("Email", null);
+
+        //CHECH TOKEN
+        if (preferences.getLong("ExpiredDate", -1) > System.currentTimeMillis()) {
+
+        } else {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
 
         appContext = this.getApplicationContext();
         SugarContext.init(this.getApplicationContext());
@@ -104,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults.length > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Welcome" , Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_LONG);
             }
         }
     }

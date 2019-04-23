@@ -13,6 +13,9 @@ public class UploadRecord extends DatabaseObject {
     @SerializedName("UploadRecordID")
     public UUID     UploadRecordID;
 
+    @SerializedName("ValuerEmail")
+    public String ValuerEmail;
+
     @SerializedName("Make")
     public String Make;
 

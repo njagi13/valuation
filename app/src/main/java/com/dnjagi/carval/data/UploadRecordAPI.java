@@ -3,6 +3,7 @@ package com.dnjagi.carval.data;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Interface.IPosServicesInterface;
 import com.dnjagi.carval.Interface.IUploadRecordInterface;
 import com.dnjagi.carval.dataObject.uploadDataObj;
@@ -31,7 +32,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
     public void PostImages() {
         try {
             IPosServicesInterface inventoryInterface =
-                    ApiClient.getClient().create(IPosServicesInterface.class);
+                    ApiClient.createService(IPosServicesInterface.class ,GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetReadyToSendUploads();
             if (unsentImages != null && unsentImages.size() > 0) {
@@ -74,7 +75,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
     public void postImagesByUploadId(String uploadRecordId) {
         try {
             IPosServicesInterface inventoryInterface =
-                    ApiClient.getClient().create(IPosServicesInterface.class);
+                    ApiClient.createService(IPosServicesInterface.class , GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetImageUploadsByUploadRecordId(uploadRecordId);
             if (unsentImages != null && unsentImages.size() > 0) {
@@ -125,8 +126,8 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
     public void CreateValuation(final UploadRecord uploadRecord) {
         try {
             IUploadRecordInterface iUploadRecordInterface =
-                    ApiClient.getClient().create(IUploadRecordInterface.class);
-            Call<UploadRecord> req = iUploadRecordInterface.postUploadRecordInformation(uploadRecord);
+                    ApiClient.createService(IUploadRecordInterface.class , GlobalVarible.token);
+            Call<UploadRecord> req = iUploadRecordInterface.postUploadRecordInformation( uploadRecord);
             req.enqueue(new Callback<UploadRecord>() {
                 @Override
                 public void onResponse(Call<UploadRecord> call, Response<UploadRecord> response) {
@@ -140,7 +141,6 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         uploadRecordAPI.postImagesByUploadId(uploadRecord.UploadRecordID.toString());
                         // confirm
                         ArrayList<ImagePathRecord> arechanged = ImagePathRecord.findAllRecords(ImagePathRecord.class);
-                        int y = 0;
 
                     } else {
                         Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));
