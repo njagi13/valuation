@@ -1,5 +1,6 @@
 package com.dnjagi.carval.data;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -28,6 +29,14 @@ import retrofit2.Response;
 
 public class UploadRecordAPI extends APIBase<uploadDataObj> {
     final MyPosBase myPosBase = new MyPosBase();
+
+    private Context mContext;
+///Todo: ADD CONSTRUCTOR THAT HANDLES CONTEXT
+//    public  UploadRecordAPI(Context context){
+//        mContext = context;
+//    }3333333
+
+
 
     public void PostImages() {
         try {
@@ -150,6 +159,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                 @Override
                 public void onFailure(Call<UploadRecord> call, Throwable t) {
                     // something went completely south (like no internet connection)
+               //     Toast.makeText(mContext, "Error Creating Valuation", Toast.LENGTH_LONG).show();
                     Log.d("Error", t.getMessage());
                 }
             });

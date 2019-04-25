@@ -17,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.data.ImagePathRecord;
@@ -68,6 +70,7 @@ public class PicturePreviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_preview);
         final ImageView imageView = findViewById(R.id.image);
+        final EditText recommendedVal = findViewById(R.id.input_recVal);
         buttonFinish = (Button) findViewById(R.id.buttonFinish);
         final long delay = getIntent().getLongExtra("delay", 0);
         final int nativeWidth = getIntent().getIntExtra("nativeWidth", 0);
@@ -117,6 +120,11 @@ public class PicturePreviewActivity extends AppCompatActivity {
         buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               String recValue = recommendedVal.getText().toString();
+               if(GlobalVarible.uploadRecord != null)
+               {
+                   GlobalVarible.uploadRecord.RecommendedValue = Integer.parseInt(recValue);
+               }
                 PostValuation();
                 // TODO: 10/20/2018 : Uncheck below code to clean up posted valuation
                 GlobalVarible.imgpath = "";
