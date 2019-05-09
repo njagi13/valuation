@@ -11,11 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.dnjagi.carval.data.EngineSystemRecord;
 import com.dnjagi.carval.Global.GlobalVarible;
-import com.dnjagi.carval.Model.EngineSystem;
 import com.dnjagi.carval.utility.Utilities;
 
 
@@ -95,12 +93,12 @@ public class EngineSystemFragment extends Fragment {
             }
         }
 
-        Button btnPrevious = view.findViewById(R.id.buttonBack);
+               Button btnPrevious = view.findViewById(R.id.buttonBack);
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Fragment fragment = new CarValuationFragment();
+                    Fragment fragment = new VisualInspectionFragment();
                     replaceFragment(fragment);
                 } catch (Exception ex) {
                     Utilities.LogException(ex);

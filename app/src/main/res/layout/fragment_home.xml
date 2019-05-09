@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/colorlightBlue"
+        app:cardBackgroundColor="@color/colorSkyBlue"
         card_view:cardCornerRadius="10dp"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:textColor="@color/colorWhite"
                 android:text="CAR VALUATION"
                 android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
                 android:textSize="22dp" />
@@ -53,7 +54,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="150dp"
         card_view:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@color/colorlightBlue"
+        app:cardBackgroundColor="@color/colorSkyBlue"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toTopOf="@+id/mainFrame">
@@ -78,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:textColor="@color/colorWhite"
                 android:text="CAR ASSESSMENT"
                 android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
                 android:textSize="22dp" />

@@ -168,6 +168,9 @@ public class UploadRecord extends DatabaseObject {
     @SerializedName("TransmissionSystemRecordModel")
     public TransmissionSystemRecord TransmissionSystemRecordModel;
 
+    @SerializedName("VisualInspectionRecordModel")
+    public VisualInspectionRecordModel VisualInspectionRecordModel;
+
     @SerializedName("SuspensionSystemRecordModel")
     public SuspensionSystemRecord SuspensionSystemRecordModel;
 

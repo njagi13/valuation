@@ -14,21 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.dnjagi.carval.data.UploadRecord;
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.utility.Utilities;
 
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 public class CarValuationFragment extends Fragment
@@ -268,7 +261,7 @@ public class CarValuationFragment extends Fragment
                     //save locally
                     //  mUploadRecord.save();
                     // long tt = UploadRecord.count(UploadRecord.class);
-                    fragment = new EngineSystemFragment();
+                    fragment = new VisualInspectionFragment();
                     replaceFragment(fragment);
                     break;
                 case R.id.buttonCancelInvoice:

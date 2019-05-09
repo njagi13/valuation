@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Lights"
+                android:textColor="@color/colorBlack"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/headlightsOk"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/headlightsOk_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are head lights Ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laymountings"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/tail_lights_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are tail lights ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layvalvemech"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/turn_signal_lights_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are turn signal lights ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laydrivebelts"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/break_lights_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are break lights ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Visual Systems \u0026 Structures"
+                android:textColor="@color/colorBlack"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/AxelsAndWheelsOk"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/axels_and_wheels_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Are axels and wheels Ok Ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/drivetrain"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/drivetrain_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Drivetrain, Transmission and Joints Ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laymuffler"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/muffler_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Muffler and exhaust ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Breaks,Steering,Speed \u0026 Safety"
+                android:textColor="@color/colorBlack"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/BreakInspectionOk"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/break_inspection_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Visual brakes inspection Ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/parkingBreak"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/parking_break_inspection_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Parking break Inspection?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laysteering"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/steering_mechanism_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Steering mechanism?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layhorn"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/horn_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Horn Ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laybumber"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/bumper_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Bumper ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Interior \u0026 Doors"
+                android:textColor="@color/colorBlack"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/doors_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/all_doors_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" All doors open , close and lock?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/fronseatAdjustment"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/front_seat_adjustment_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Front seat adjustment ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layseatBelts"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/seat_belts_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Seat belts(Driver \u0026 Passanger) ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layacheat"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/ac_heat_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" AC/Heat ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Windows \u0026 Doors"
+                android:textColor="@color/colorBlack"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/windshield_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/windshield_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Wind shield ok(No Cracks)?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rearWindows"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/rear_windows_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Rear windows \u0026 Other glass ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/laywipers"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/windshield_wipers_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Wind shield wipers ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layirearmirror"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/interior_rearview_mirror_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Interior rearview mirror ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layerearmirror"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/exterior_rearview_mirrors_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Exterior rearview mirrors ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Tires Condition \u0026 Depth"
+                android:textColor="@color/colorBlack"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/fr_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/front_right_tire_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Front Right Tire ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/fl_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/front_left_tire_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Front Left Tire ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/rear_left_tire_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Rear Left Tire ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rr_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/rear_right_tire_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Rear Right Tire ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/st_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/spare_tire_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Spare Tire ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="Appearance \u0026 Cleanliness"
+                android:textColor="@color/colorBlack"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/icleanliness_Ok"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/interior_cleanliness_ok_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Interior Cleanliness ok?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/bodydamage"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/body_damage_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Any body damage?"
+                    android:textOff="OFF"
+                    android:textOn="ON" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <Button
+                android:id="@+id/lightsbuttonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Back"></Button>
+
+            <Button
+                android:id="@+id/lightsbuttonNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:text="Next"></Button>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

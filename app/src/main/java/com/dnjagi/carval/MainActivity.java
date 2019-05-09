@@ -30,11 +30,10 @@ import com.dnjagi.carval.database.SugarDb;
 
 import com.dnjagi.carval.Services.UploadService;
 
-import static com.google.android.gms.flags.impl.SharedPreferencesFactory.getSharedPreferences;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         HomeFragment.OnFragmentInteractionListener,
+        VisualInspectionFragment.OnFragmentInteractionListener,
         CarValuationFragment.OnFragmentInteractionListener,
         ReportsFragment.OnFragmentInteractionListener,
         CameraViewFragment.OnFragmentInteractionListener,
