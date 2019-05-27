@@ -1,12 +1,14 @@
 package com.dnjagi.carval.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Interface.IPosServicesInterface;
 import com.dnjagi.carval.Interface.IUploadRecordInterface;
+import com.dnjagi.carval.MainActivity;
 import com.dnjagi.carval.dataObject.uploadDataObj;
 import com.dnjagi.carval.enums.eFileStatus;
 import com.dnjagi.carval.utility.Utilities;
@@ -37,11 +39,10 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
 //    }3333333
 
 
-
     public void PostImages() {
         try {
             IPosServicesInterface inventoryInterface =
-                    ApiClient.createService(IPosServicesInterface.class ,GlobalVarible.token);
+                    ApiClient.createService(IPosServicesInterface.class, GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetReadyToSendUploads();
             if (unsentImages != null && unsentImages.size() > 0) {
@@ -84,7 +85,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
     public void postImagesByUploadId(String uploadRecordId) {
         try {
             IPosServicesInterface inventoryInterface =
-                    ApiClient.createService(IPosServicesInterface.class , GlobalVarible.token);
+                    ApiClient.createService(IPosServicesInterface.class, GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetImageUploadsByUploadRecordId(uploadRecordId);
             if (unsentImages != null && unsentImages.size() > 0) {
@@ -113,6 +114,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                                     Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));
                                 }
                             }
+
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 // something went completely south (like no internet connection)
@@ -122,7 +124,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                     }
                 }
                 //todo: SAVE STATUS AS SENT WHEN USING A BACKEND SERVICE
-             //    myPosBase.UpDateUploadStatus(uploadRecordId, eFileStatus.SENT);
+                //    myPosBase.UpDateUploadStatus(uploadRecordId, eFileStatus.SENT);
 
             }
 
@@ -135,14 +137,13 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
     public void CreateValuation(final UploadRecord uploadRecord) {
         try {
             IUploadRecordInterface iUploadRecordInterface =
-                    ApiClient.createService(IUploadRecordInterface.class , GlobalVarible.token);
-            Call<UploadRecord> req = iUploadRecordInterface.postUploadRecordInformation( uploadRecord);
+                    ApiClient.createService(IUploadRecordInterface.class, GlobalVarible.token);
+            Call<UploadRecord> req = iUploadRecordInterface.postUploadRecordInformation(uploadRecord);
             req.enqueue(new Callback<UploadRecord>() {
                 @Override
                 public void onResponse(Call<UploadRecord> call, Response<UploadRecord> response) {
                     if (response.isSuccessful()) {
                         // CHANGE STATUS TO READY FOR SUBMISSION FOR IMAGES TO BE SENT TO SERVER
-
                         ArrayList<ImagePathRecord> postedImagePathRecord = myPosBase.GetUnsentUploadRecords(uploadRecord.UploadRecordID.toString());
                         myPosBase.UpDateUploadStatus(uploadRecord.UploadRecordID.toString(), eFileStatus.PENDING_POST);
                         //todo: post the images asynchronously // change to backend service later
@@ -150,6 +151,13 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         uploadRecordAPI.postImagesByUploadId(uploadRecord.UploadRecordID.toString());
                         // confirm
                         ArrayList<ImagePathRecord> arechanged = ImagePathRecord.findAllRecords(ImagePathRecord.class);
+
+                        //this will clean up posted images uri
+                        GlobalVarible.imgpath = "";
+                        GlobalVarible.uploadRecord = null;
+
+                        Intent myIntent = new Intent(mContext, MainActivity.class);
+                        mContext.startActivity(myIntent);
 
                     } else {
                         Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));
@@ -159,8 +167,8 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                 @Override
                 public void onFailure(Call<UploadRecord> call, Throwable t) {
                     // something went completely south (like no internet connection)
-               //     Toast.makeText(mContext, "Error Creating Valuation", Toast.LENGTH_LONG).show();
                     Log.d("Error", t.getMessage());
+                    Toast.makeText(mContext, "Error Posting Valuation", Toast.LENGTH_LONG);
                 }
             });
         } catch (Exception e) {

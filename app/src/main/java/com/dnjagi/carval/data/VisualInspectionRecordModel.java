@@ -19,59 +19,59 @@ public class VisualInspectionRecordModel extends DatabaseObject {
     public UUID UploadRecordID;
 
     //lights
-    public boolean HeadLightsOk;
+    public boolean HeadLights;
 
-    public boolean TailLightsOk;
+    public boolean TailLights;
 
-    public boolean BreakLightsOk;
+    public boolean BreakLights;
 
-    public boolean TurnSignalLightsOk;
+    public boolean TurnSignalLights;
 
-    public boolean AxelAndWheelsOk;
+    public boolean AxelAndWheels;
 
-    public boolean DriveTrainOk;
+    public boolean DriveTrain;
 
-    public boolean MufflerAndExhaustOk;
+    public boolean MufflerAndExhaust;
 
-    public boolean VisualBreakInspectionOk;
+    public boolean VisualBreakInspection;
 
-    public boolean ParkingBreakOk;
+    public boolean ParkingBreak;
 
-    public boolean SteeringMechanismOk;
+    public boolean SteeringMechanism;
 
-    public boolean HornOk;
+    public boolean Horn;
 
-    public boolean BumperOk;
+    public boolean Bumper;
 
-    public boolean AllDoorsOpenCloseLockOk;
+    public boolean AllDoorsOpenCloseLock;
 
-    public boolean FrontSeatsAdjustmentOk;
+    public boolean FrontSeatsAdjustment;
 
-    public boolean SeatBeltsOk;
+    public boolean SeatBelts;
 
-    public boolean AcHeatOk;
+    public boolean AcHeat;
 
-    public boolean WindShieldOk;
+    public boolean WindShield;
 
-    public boolean RearWindowsOk;
+    public boolean RearWindows;
 
-    public boolean WindShieldWipersOk;
+    public boolean WindShieldWipers;
 
-    public boolean InteriorRearViewMirrorOk;
+    public boolean InteriorRearViewMirror;
 
-    public boolean ExternalRearViewMirrorOk;
+    public boolean ExternalRearViewMirror;
 
-    public boolean FrontRightTireOk;
+    public boolean FrontRightTire;
 
-    public boolean FrontLeftTireOk;
+    public boolean FrontLeftTire;
 
-    public boolean RearRightTireOk;
+    public boolean RearRightTire;
 
-    public boolean RearLeftTireOk;
+    public boolean RearLeftTire;
 
-    public boolean SpareTireOk;
+    public boolean SpareTire;
 
-    public boolean InteriorCleanlinessOk;
+    public boolean InteriorCleanliness;
 
     public boolean AnyBodyDamage;
 }

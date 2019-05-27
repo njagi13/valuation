@@ -33,6 +33,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.data.LoginRecord;
@@ -202,6 +203,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
+        Toast.makeText(getApplicationContext() , "Please wait!" , Toast.LENGTH_LONG).show();
         if (mAuthTask != null) {
             return;
         }
@@ -377,6 +379,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 showProgress(false);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(getApplicationContext() , "Welcome!" , Toast.LENGTH_LONG).show();
             }
             return isLoggedIn;
         }
@@ -389,7 +392,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (success) {
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+              //  mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
         }

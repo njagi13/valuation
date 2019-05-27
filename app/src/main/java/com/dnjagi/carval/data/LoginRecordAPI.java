@@ -76,6 +76,7 @@ public class LoginRecordAPI {
                 @Override
                 public void onFailure(Call<AccessTokenResponse> call, Throwable t) {
                     IsLogged = false;
+                    Toast.makeText(mContext, "Login Error!" , Toast.LENGTH_LONG).show();
                     Log.d("Error", t.getMessage());
                 }
             });

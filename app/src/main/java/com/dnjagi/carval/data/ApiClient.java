@@ -6,6 +6,7 @@ import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Model.AuthenticationInterceptor;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -25,7 +26,9 @@ public class ApiClient {
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null);
     }
-    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+    //set post timeout
+    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS);
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -36,7 +39,6 @@ public class ApiClient {
         if (!TextUtils.isEmpty(authToken)) {
             AuthenticationInterceptor interceptor =
                     new AuthenticationInterceptor(authToken);
-
             if (!httpClient.interceptors().contains(interceptor)) {
                 httpClient.addInterceptor(interceptor);
                 builder.client(httpClient.build());

@@ -162,14 +162,16 @@ public class UploadRecord extends DatabaseObject {
         return ImagesPath;
     }
 
+
+    @SerializedName("VisualInspectionRecordModel")
+    public VisualInspectionRecordModel VisualInspectionRecordModel;
+
+
     @SerializedName("EngineSystemRecordModel")
     public EngineSystemRecord EngineSystemRecordModel;
 
     @SerializedName("TransmissionSystemRecordModel")
     public TransmissionSystemRecord TransmissionSystemRecordModel;
-
-    @SerializedName("VisualInspectionRecordModel")
-    public VisualInspectionRecordModel VisualInspectionRecordModel;
 
     @SerializedName("SuspensionSystemRecordModel")
     public SuspensionSystemRecord SuspensionSystemRecordModel;

@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical" >
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/GRIDv"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:weightSum="1">
         <GridView
             android:id="@+id/PhoneImageGrid"
@@ -34,8 +30,6 @@
             android:verticalSpacing="0dp" />
     </LinearLayout>
 
-
-
     <ImageView
         android:id="@+id/addImage"
         android:layout_width="wrap_content"
@@ -48,10 +42,9 @@
 
     <LinearLayout
         android:id="@+id/LinearLayout03"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:weightSum="1">
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -72,16 +65,34 @@
 
 
     </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LinearLayout07"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <Button
+                android:id="@+id/buttonConfirmPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#7DCEA0"
+                android:text="Confirm Mpesa Payment"
+                android:visibility="invisible"></Button>
+        </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/LinearLayout02"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:paddingBottom="15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
-
 
         <Button
             android:id="@+id/buttonFinish"
@@ -89,10 +100,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#7DCEA0"
-            android:text="Finish"
+            android:text="Save Valuation"
             android:visibility="invisible"></Button>
-
+    </LinearLayout>
 
     </LinearLayout>
-    </LinearLayout>
-</RelativeLayout>
+</ScrollView>

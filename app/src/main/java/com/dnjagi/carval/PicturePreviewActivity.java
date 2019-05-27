@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.data.ImagePathRecord;
@@ -120,17 +121,13 @@ public class PicturePreviewActivity extends AppCompatActivity {
         buttonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               String recValue = recommendedVal.getText().toString();
-               if(GlobalVarible.uploadRecord != null)
-               {
-                   GlobalVarible.uploadRecord.RecommendedValue = Integer.parseInt(recValue);
-               }
+                Toast.makeText(getApplicationContext(), "Please wait..", Toast.LENGTH_LONG).show();
+                buttonFinish.setEnabled(false);
+                String recValue = recommendedVal.getText().toString();
+                if (GlobalVarible.uploadRecord != null) {
+                    GlobalVarible.uploadRecord.RecommendedValue = Integer.parseInt(recValue);
+                }
                 PostValuation();
-                // TODO: 10/20/2018 : Uncheck below code to clean up posted valuation
-                GlobalVarible.imgpath = "";
-                GlobalVarible.uploadRecord = null;
-                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(myIntent);
             }
         });
     }
@@ -156,14 +153,14 @@ public class PicturePreviewActivity extends AppCompatActivity {
                 mFolder.mkdirs();
             }
             if (mFolder.exists()) {
-               mFolder.delete();
+                mFolder.delete();
             }
             GlobalVarible.imgpath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot;
             ImagePathRecord imagePathRecord = new ImagePathRecord();
             //PENDING SUBMISSION SINCE USER HAS NOT CLICKED SEND
             imagePathRecord.FileStatus = eFileStatus.PENDING_SUBMISSION;
-            imagePathRecord.ImagePath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + GlobalVarible.fileRoot + "/" + uploadId+ "_";
-           imagePathRecord.FileName  =  fileName;
+            imagePathRecord.ImagePath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + GlobalVarible.fileRoot + "/" + uploadId + "_";
+            imagePathRecord.FileName = fileName;
             imagePathRecord.UploadRecordID = uploadId;
             imagePathRecord.save();
             ArrayList<ImagePathRecord> tt = ImagePathRecord.findAllRecords(ImagePathRecord.class);
@@ -210,13 +207,6 @@ public class PicturePreviewActivity extends AppCompatActivity {
                 mFilePaths.add(listFile[i].getAbsolutePath());
             }
         }
-    }
-
-    public void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
 
