@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.dnjagi.carval.Global.GlobalVarible;
-import com.dnjagi.carval.Interface.IPosServicesInterface;
+import com.dnjagi.carval.Interface.IMotovalServicesInterface;
 import com.dnjagi.carval.Interface.IUploadRecordInterface;
 import com.dnjagi.carval.MainActivity;
 import com.dnjagi.carval.dataObject.uploadDataObj;
@@ -41,8 +41,8 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
 
     public void PostImages() {
         try {
-            IPosServicesInterface inventoryInterface =
-                    ApiClient.createService(IPosServicesInterface.class, GlobalVarible.token);
+            IMotovalServicesInterface inventoryInterface =
+                    ApiClient.createService(IMotovalServicesInterface.class, GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetReadyToSendUploads();
             if (unsentImages != null && unsentImages.size() > 0) {
@@ -84,8 +84,8 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
 
     public void postImagesByUploadId(String uploadRecordId) {
         try {
-            IPosServicesInterface inventoryInterface =
-                    ApiClient.createService(IPosServicesInterface.class, GlobalVarible.token);
+            IMotovalServicesInterface inventoryInterface =
+                    ApiClient.createService(IMotovalServicesInterface.class, GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetImageUploadsByUploadRecordId(uploadRecordId);
             if (unsentImages != null && unsentImages.size() > 0) {
@@ -160,6 +160,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         mContext.startActivity(myIntent);
 
                     } else {
+                        Toast.makeText(mContext, "Error posting valuation!! Session expired", Toast.LENGTH_LONG).show();
                         Utilities.LogException(new Exception("Error posting Valuation at UploadRecordAPI.CreateValuation()"));
                     }
                 }

@@ -7,9 +7,6 @@ import com.dnjagi.carval.enums.eFileStatus;
 
 import java.util.ArrayList;
 
-/**
- * Created by Waithera on 12/1/2017.
- */
 
 public class MyPosBase extends SugarRecord {
 

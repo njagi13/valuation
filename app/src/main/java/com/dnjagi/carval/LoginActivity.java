@@ -17,6 +17,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -375,6 +377,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             LoginRecordAPI loginRecordAPI = new LoginRecordAPI(getApplicationContext(), LoginActivity.this);
             Boolean isLoggedIn = loginRecordAPI.LoginUser(loginRecord);
+            while(isLoggedIn!=true){
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             if (isLoggedIn) {
                 showProgress(false);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

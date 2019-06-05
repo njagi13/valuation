@@ -1,8 +1,7 @@
 package com.dnjagi.carval;
 
-import com.dnjagi.carval.data.UploadRecord;
 import com.dnjagi.carval.Global.GlobalVarible;
-import com.dnjagi.carval.Interface.IPosServicesInterface;
+import com.dnjagi.carval.Interface.IMotovalServicesInterface;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.MultipartBody;
@@ -13,8 +12,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiUtility implements IPosServicesInterface {
-    private IPosServicesInterface service;
+public class ApiUtility implements IMotovalServicesInterface {
+    private IMotovalServicesInterface service;
 
     public ApiUtility() {
         GlobalVarible globalVars = new GlobalVarible();
@@ -37,7 +36,7 @@ public class ApiUtility implements IPosServicesInterface {
                         )
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .build();
-        service = retrofit.create(IPosServicesInterface.class);
+        service = retrofit.create(IMotovalServicesInterface.class);
     }
 
 
@@ -51,4 +50,6 @@ public class ApiUtility implements IPosServicesInterface {
     public Call<ResponseBody> postImage(MultipartBody.Part image, RequestBody name) {
         return service.postImage(image, name);
     }
+
+
 }

@@ -1,7 +1,6 @@
 package com.dnjagi.carval;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,8 +8,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.data.ImagePathRecord;
 import com.dnjagi.carval.data.UploadRecordAPI;
 import com.dnjagi.carval.enums.eFileStatus;
 import com.dnjagi.carval.utility.Utilities;
 import com.otaliastudios.cameraview.CameraUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -72,7 +66,7 @@ public class PicturePreviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_preview);
         final ImageView imageView = findViewById(R.id.image);
         final EditText recommendedVal = findViewById(R.id.input_recVal);
-        buttonFinish = (Button) findViewById(R.id.buttonFinish);
+        buttonFinish = findViewById(R.id.buttonFinish);
         final long delay = getIntent().getLongExtra("delay", 0);
         final int nativeWidth = getIntent().getIntExtra("nativeWidth", 0);
         final int nativeHeight = getIntent().getIntExtra("nativeHeight", 0);
@@ -81,7 +75,7 @@ public class PicturePreviewActivity extends AppCompatActivity {
             finish();
             return;
         }
-        addImage = (ImageView) findViewById(R.id.addImage);
+        addImage = findViewById(R.id.addImage);
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,13 +96,13 @@ public class PicturePreviewActivity extends AppCompatActivity {
             @Override
             public void onBitmapReady(Bitmap bitmap) {
                 //   imageView.setImageBitmap(bitmap);
-                String fileName = String.valueOf(new Date()) + ".jpeg";
+                String fileName = new Date() + ".jpeg";
                 //   createDirectoryAndSaveFile(bitmap,fileName);
                 createFolders(bitmap);
                 // approxUncompressedSize.setTitle("Approx. uncompressed size");
                 // approxUncompressedSize.setMessage(getApproximateFileMegabytes(bitmap) + "MB");
                 getFromSdcard();
-                GridView imagegrid = (GridView) findViewById(R.id.PhoneImageGrid);
+                GridView imagegrid = findViewById(R.id.PhoneImageGrid);
                 imageAdapter = new ImageAdapter();
                 imagegrid.setAdapter(imageAdapter);
             }
@@ -235,8 +229,8 @@ public class PicturePreviewActivity extends AppCompatActivity {
                 holder = new ViewHolder();
                 convertView = mInflater.inflate(
                         R.layout.gelleryitem, null);
-                holder.imageview = (ImageView) convertView.findViewById(R.id.thumbImage);
-                holder.closeImageview = (ImageView) convertView.findViewById(R.id.itemCheckBox);
+                holder.imageview = convertView.findViewById(R.id.thumbImage);
+                holder.closeImageview = convertView.findViewById(R.id.itemCheckBox);
                 holder.closeImageview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

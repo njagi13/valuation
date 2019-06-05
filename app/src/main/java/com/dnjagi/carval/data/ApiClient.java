@@ -15,7 +15,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-
 public class ApiClient {
     static GlobalVarible globalVars = new GlobalVarible();
 
@@ -26,9 +25,10 @@ public class ApiClient {
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null);
     }
+
     //set post timeout
-    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS);
+    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS);
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -48,8 +48,8 @@ public class ApiClient {
         return retrofit.create(serviceClass);
     }
 
-        public static Retrofit getClient() {
-        if (retrofit==null) {
+    public static Retrofit getClient() {
+        if (retrofit == null) {
 //            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
 //                @Override
 //                public okhttp3.Response intercept(Chain chain) throws IOException {
