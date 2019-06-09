@@ -27,14 +27,7 @@ import java.util.UUID;
 
 public class CarValuationFragment extends Fragment
         implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -43,11 +36,9 @@ public class CarValuationFragment extends Fragment
     }
 
 
-    public static CarValuationFragment newInstance(String param1, String param2) {
+    public static CarValuationFragment newInstance() {
         CarValuationFragment fragment = new CarValuationFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,17 +46,13 @@ public class CarValuationFragment extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     Calendar myCalendar = Calendar.getInstance();
     EditText dateOfRegText, dateOfPolicyExpiryText;
 
     private EditText input_make, input_model, input_regnumber, input_color, input_odom, input_yearOfManf, input_policyNo,
-            input_policyexpirydate, input_chasisnumber, input_enginenumber, input_engrating, input_fname, input_lname,
+            input_policyexpirydate, input_chasisnumber, input_enginenumber, input_engrating, input_fname, input_lname,input_mname,
             input_phone1, input_phone2, input_email;
 
     UploadRecord mUploadRecord;
@@ -85,10 +72,12 @@ public class CarValuationFragment extends Fragment
         input_yearOfManf = (EditText) view.findViewById(R.id.input_yearOfManf);
         input_policyNo = (EditText) view.findViewById(R.id.input_policyNo);
         input_chasisnumber = (EditText) view.findViewById(R.id.input_chasisnumber);
+        input_policyexpirydate = (EditText) view.findViewById(R.id.input_policyexpirydate);
         input_enginenumber = (EditText) view.findViewById(R.id.input_enginenumber);
         input_engrating = (EditText) view.findViewById(R.id.input_engrating);
         input_fname = (EditText) view.findViewById(R.id.input_fname);
         input_lname = (EditText) view.findViewById(R.id.input_lname);
+        input_mname = (EditText) view.findViewById(R.id.input_mname);
         input_phone1 = (EditText) view.findViewById(R.id.input_phone1);
         input_phone2 = (EditText) view.findViewById(R.id.input_phone2);
         input_email = (EditText) view.findViewById(R.id.input_email);
@@ -99,7 +88,7 @@ public class CarValuationFragment extends Fragment
             if (GlobalVarible.uploadRecord.UploadRecordID != null) {
 
                 input_make.setText(GlobalVarible.uploadRecord.Make);
-                input_model.setText(GlobalVarible.uploadRecord.Model);
+                input_model.setText(GlobalVarible.uploadRecord.CarModel);
                 input_regnumber.setText(GlobalVarible.uploadRecord.RegistrationNumber);
                 input_color.setText(GlobalVarible.uploadRecord.Color);
                 input_odom.setText(GlobalVarible.uploadRecord.OdomReading);
@@ -109,11 +98,13 @@ public class CarValuationFragment extends Fragment
                 input_enginenumber.setText(GlobalVarible.uploadRecord.EngineNumber);
                 input_engrating.setText(GlobalVarible.uploadRecord.EngineRating);
                 input_fname.setText(GlobalVarible.uploadRecord.FirstName);
+                input_mname.setText(GlobalVarible.uploadRecord.MiddleName);
                 input_lname.setText(GlobalVarible.uploadRecord.LastName);
                 input_phone1.setText(GlobalVarible.uploadRecord.PhoneNumber1);
                 input_phone2.setText(GlobalVarible.uploadRecord.PhoneNumber2);
                 dateOfRegText.setText(GlobalVarible.uploadRecord.DateOfReg);
-                dateOfPolicyExpiryText.setText(GlobalVarible.uploadRecord.Model);
+                dateOfPolicyExpiryText.setText(GlobalVarible.uploadRecord.InsExpiryDate);
+                input_email.setText(GlobalVarible.uploadRecord.Email);
             }
         }
 
@@ -222,7 +213,7 @@ public class CarValuationFragment extends Fragment
                     Fragment fragment = null;
 
                     mUploadRecord.Make = input_make.getText().toString();
-                    mUploadRecord.Model = input_model.getText().toString();
+                    mUploadRecord.CarModel = input_model.getText().toString();
                     mUploadRecord.RegistrationNumber = input_regnumber.getText().toString();
                     mUploadRecord.Color = input_color.getText().toString();
                     mUploadRecord.OdomReading = input_odom.getText().toString();
@@ -241,8 +232,10 @@ public class CarValuationFragment extends Fragment
                     mUploadRecord.UploadRecordID = UUID.randomUUID();
                     SharedPreferences preferences = getActivity().getSharedPreferences(GlobalVarible.LoggedIn, getActivity().getApplicationContext().MODE_PRIVATE);
                     mUploadRecord.ValuerEmail = preferences.getString("Email", null);
+                    if (GlobalVarible.uploadRecord == null) {
+                        setupGlobalUploadRecord(mUploadRecord);
+                    }
 
-                    setupGlobalUploadRecord(mUploadRecord);
 
 
                    /* for (Field field : mUploadRecord.getClass().getDeclaredFields()) {
@@ -281,7 +274,7 @@ public class CarValuationFragment extends Fragment
         try {
             GlobalVarible.uploadRecord = new UploadRecord();
             GlobalVarible.uploadRecord.Make = mUploadRecord.Make;
-            GlobalVarible.uploadRecord.Model = mUploadRecord.Model;
+            GlobalVarible.uploadRecord.CarModel = mUploadRecord.CarModel;
             GlobalVarible.uploadRecord.RegistrationNumber = mUploadRecord.RegistrationNumber;
             GlobalVarible.uploadRecord.Color = mUploadRecord.Color;
             GlobalVarible.uploadRecord.OdomReading = mUploadRecord.OdomReading;
@@ -298,7 +291,7 @@ public class CarValuationFragment extends Fragment
             GlobalVarible.uploadRecord.Email = mUploadRecord.Email;
             GlobalVarible.uploadRecord.DateOfReg = mUploadRecord.DateOfReg;
             GlobalVarible.uploadRecord.UploadRecordID = mUploadRecord.UploadRecordID;
-            GlobalVarible.uploadRecord.ValuerEmail =  mUploadRecord.ValuerEmail;
+            GlobalVarible.uploadRecord.ValuerEmail = mUploadRecord.ValuerEmail;
         } catch (Exception ex) {
             Utilities.LogException(ex);
         }

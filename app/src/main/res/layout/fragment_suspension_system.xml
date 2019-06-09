@@ -1,197 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    tools:context=".ValuationsFragment">
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="4dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/engineStarts"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/ssbusheswornout_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Are bushes worn out?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/scrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/laymountings"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/sssuspensionwornout_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Are suspension shock absorbers worn out?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/layvalvemech"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/sscenterboltbroken_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Is center bolt/center rubber broken?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/laydrivebelts"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/ssballjointwornout_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Are suspension ball joints worn out?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/layoilleaks"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/ssspringbroken_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Are leaf springs broken/weak/missaligned?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/layrpm"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/sscollspringbroken_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Are coil springs broken?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/laynoiseinengine"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <Switch
-                    android:id="@+id/ssspringanchor_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Are spring anchor points Ok?"
-                    android:textOff="OFF"
-                    android:textOn="ON" />
-            </LinearLayout>
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/lay4"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:weightSum="1">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="0.5">
-
-                    <EditText
-                        android:id="@+id/ssinput_comments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="true"
-                        android:hint="Comments on Suspension System"
-                        android:inputType="text"
-                        android:lines="4"
-                        android:maxLines="4"
-                        android:textSize="13dp" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearLayout02"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:paddingBottom="15dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/ssbuttonBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Back"></Button>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="15dp">
 
-                <Button
-                    android:id="@+id/ssbuttonNext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    android:text="Next"></Button>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/engineStarts"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <Switch
+                            android:id="@+id/ssbusheswornout_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Are bushes worn out?"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/laymountings"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <Switch
+                            android:id="@+id/sssuspensionwornout_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Are suspension shock absorbers worn out?"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/layvalvemech"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <Switch
+                            android:id="@+id/sscenterboltbroken_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Is center bolt/center rubber broken?"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/laydrivebelts"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <Switch
+                            android:id="@+id/ssballjointwornout_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Are suspension ball joints worn out?"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/layoilleaks"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <Switch
+                            android:id="@+id/ssspringbroken_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Are leaf springs broken/weak/missaligned?"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/layrpm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <Switch
+                            android:id="@+id/sscollspringbroken_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Are coil springs broken?"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
+                    </LinearLayout>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/laynoiseinengine"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <Switch
+                            android:id="@+id/ssspringanchor_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Are spring anchor points Ok?"
+                            android:textOff="OFF"
+                            android:textOn="ON" />
+                    </LinearLayout>
 
 
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/lay4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:weightSum="1">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/ssinput_comments"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Comments on Suspension System"
+                                android:inputType="text"
+                                android:lines="4"
+                                android:maxLines="4"
+                                android:textSize="13dp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout02"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="15dp">
+
+                        <Button
+                            android:id="@+id/ssbuttonBack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Back"></Button>
+
+                        <Button
+                            android:id="@+id/ssbuttonNext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="1"
+                            android:text="Next"></Button>
+
+
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

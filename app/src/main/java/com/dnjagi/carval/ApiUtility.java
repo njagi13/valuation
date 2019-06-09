@@ -2,7 +2,7 @@ package com.dnjagi.carval;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Interface.IMotovalServicesInterface;
-import com.dnjagi.carval.Model.ValuationModel;
+import com.dnjagi.carval.data.UploadRecord;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -56,7 +56,7 @@ public class ApiUtility implements IMotovalServicesInterface {
     }
 
     @Override
-    public Call<ArrayList<ValuationModel>> valuationList(String email) {
+    public Call<ArrayList<UploadRecord>> valuationList(String email) {
         return service.valuationList(email);
     }
 

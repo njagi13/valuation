@@ -169,7 +169,11 @@ public class MainActivity extends AppCompatActivity
         //NOTE: creating fragment object
         Fragment fragment = null;
         if (id == R.id.car_valuation) {
+            GlobalVarible.uploadRecord = null;
             fragment = new CarValuationFragment();
+        } else if (id == R.id.home) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.ocr) {
             //fragment = new AccidentAssessmentFragment();
             Intent intent = new Intent(this, OcrCaptureActivity.class);

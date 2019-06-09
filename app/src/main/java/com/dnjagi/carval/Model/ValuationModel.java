@@ -8,6 +8,8 @@ public class ValuationModel {
 
     public boolean IsLogBookAttached;
 
+    public String StatusString;
+
     public String ValuerEmail;
 
     public UUID ObjectID;

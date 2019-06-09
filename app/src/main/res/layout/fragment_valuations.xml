@@ -1,26 +1,41 @@
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-        tools:context=".ValuationsFragment">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ValuationsFragment">
+
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="70dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="4dp">
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            tools:ignore="MissingConstraints" />
-
-        <Button
-            android:id="@+id/btnShow1"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listView"
+                android:paddingTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnShow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </FrameLayout>

@@ -16,6 +16,11 @@ public class UploadRecord extends DatabaseObject {
     @SerializedName("ValuerEmail")
     public String ValuerEmail;
 
+
+    @SerializedName("StatusString")
+    public String StatusString;
+
+
     @SerializedName("Make")
     public String Make;
 
@@ -23,11 +28,14 @@ public class UploadRecord extends DatabaseObject {
         return Make;
     }
 
-    @SerializedName("Model")
-    public String Model;
+    @SerializedName("CarModel")
+    public String CarModel;
 
-    public String getModel() {
-        return Model;
+    @SerializedName("Comments")
+    public String Comments;
+
+    public String getCarModel() {
+        return CarModel;
     }
 
     @SerializedName("BodyType")
@@ -119,6 +127,13 @@ public class UploadRecord extends DatabaseObject {
 
     public String getFirstName() {
         return FirstName;
+    }
+
+    @SerializedName("MiddleName")
+    public String MiddleName;
+
+    public String getMiddleName() {
+        return MiddleName;
     }
 
     @SerializedName("LastName")

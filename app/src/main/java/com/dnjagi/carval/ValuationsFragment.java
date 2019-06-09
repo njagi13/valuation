@@ -9,15 +9,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Interface.IMotovalServicesInterface;
-import com.dnjagi.carval.Model.ValuationModel;
 import com.dnjagi.carval.adapter.ValuationAdapter;
 import com.dnjagi.carval.data.ApiClient;
+import com.dnjagi.carval.data.UploadRecord;
 import com.dnjagi.carval.utility.Utilities;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -36,7 +35,6 @@ public class ValuationsFragment extends Fragment {
     }
 
     ListView listView;
-    TextView textView;
     Context context;
 
     @Override
@@ -54,14 +52,13 @@ public class ValuationsFragment extends Fragment {
         final Button btn = (Button) view.findViewById(R.id.btnShow1);
         IMotovalServicesInterface iMotovalServicesInterface =
                 ApiClient.createService(IMotovalServicesInterface.class, GlobalVarible.token);
-        Call<ArrayList<ValuationModel>> req = iMotovalServicesInterface.valuationList(GlobalVarible.email);
-        req.enqueue(new Callback<ArrayList<ValuationModel>>() {
+        Call<ArrayList<UploadRecord>> req = iMotovalServicesInterface.valuationList(GlobalVarible.email);
+        req.enqueue(new Callback<ArrayList<UploadRecord>>() {
             @Override
-            public void onResponse(Call<ArrayList<ValuationModel>> call, Response<ArrayList<ValuationModel>> response) {
+            public void onResponse(Call<ArrayList<UploadRecord>> call, Response<ArrayList<UploadRecord>> response) {
                 if (response.isSuccessful()) {
                     listView = (ListView) getView().findViewById(R.id.listView);
-                    textView = (TextView) getView().findViewById(R.id.regNoTextView);
-                    ArrayList<ValuationModel> reesponseData = response.body();
+                    ArrayList<UploadRecord> reesponseData = response.body();
                     final ValuationAdapter adapter = new ValuationAdapter(getActivity(), R.layout.valuationlist_item, reesponseData);
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,8 +75,8 @@ public class ValuationsFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<ValuationModel>> call, Throwable t) {
-                Snackbar.make(btn, "Error getting valuations. Please login again.", Snackbar.LENGTH_LONG).show();
+            public void onFailure(Call<ArrayList<UploadRecord>> call, Throwable t) {
+                Snackbar.make(btn, "Error getting valuations. Please try again.", Snackbar.LENGTH_LONG).show();
                 Utilities.LogException(new Exception("Error getting valuations" + " " + t.getMessage()));
             }
         });

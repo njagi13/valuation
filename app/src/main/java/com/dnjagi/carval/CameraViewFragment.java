@@ -22,22 +22,15 @@ import com.otaliastudios.cameraview.Size;
 import java.io.File;
 
 public class CameraViewFragment extends Fragment implements View.OnClickListener, ControlView.Callback {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
     private CameraView cameraView;
     private ViewGroup controlPanel;
-
     private boolean mCapturingPicture;
     private boolean mCapturingVideo;
 
     // To show stuff in the callback
     private Size mCaptureNativeSize;
     private long mCaptureTime;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,8 +41,6 @@ public class CameraViewFragment extends Fragment implements View.OnClickListener
     public static CameraViewFragment newInstance(String param1, String param2) {
         CameraViewFragment fragment = new CameraViewFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,14 +49,13 @@ public class CameraViewFragment extends Fragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Capture Images");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_camera_view, container, false);
 

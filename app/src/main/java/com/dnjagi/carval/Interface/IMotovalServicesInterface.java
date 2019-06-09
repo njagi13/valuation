@@ -1,6 +1,6 @@
 package com.dnjagi.carval.Interface;
 
-import com.dnjagi.carval.Model.ValuationModel;
+import com.dnjagi.carval.data.UploadRecord;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public interface IMotovalServicesInterface {
     Call<ResponseBody> postImage(@Part MultipartBody.Part image, @Part("uploadId") RequestBody uploadId);
 
     @GET("/api/Assessment/GetUserValuations")
-    Call<ArrayList<ValuationModel>> valuationList(
+    Call<ArrayList<UploadRecord>> valuationList(
             @Query("email") String email
     );
 }

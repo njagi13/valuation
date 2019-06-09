@@ -5,89 +5,98 @@
     android:layout_height="match_parent"
     tools:context="com.dnjagi.carval.HomeFragment">
 
-    <com.google.android.material.card.MaterialCardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        app:cardBackgroundColor="@color/colorOrange"
-        card_view:cardCornerRadius="0dp"
-        card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="@+id/mainFrame">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/valuationCard"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="70dp"
+            app:cardBackgroundColor="?attr/colorAccent"
+            app:cardCornerRadius="4dp">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:paddingTop="30dp"
-                android:src="@drawable/clipboard_text_outline" />
-
-            <TextView
-                android:id="@+id/textView2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textColor="@color/colorWhite"
-                android:text="Vehicle Valuation"
-                android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
-                android:textSize="18dp" />
-        </LinearLayout>
+                android:layout_gravity="bottom"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-    </com.google.android.material.card.MaterialCardView>
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="30dp"
+                        android:src="@drawable/baseline_drive_eta_24px" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Vehicle Valuation"
+                        android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
 
 
-    <com.google.android.material.card.MaterialCardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view1"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="90dp"
-        card_view:cardCornerRadius="0dp"
-        app:cardBackgroundColor="@color/colorOrange"
-        card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintTop_toTopOf="@+id/mainFrame">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="70dp"
+            app:cardBackgroundColor="?attr/colorAccent"
+            app:cardCornerRadius="4dp">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView21"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:paddingTop="30dp"
-                android:src="@drawable/clipboard_text_outline" />
-
-            <TextView
-                android:id="@+id/textView12"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textColor="@color/colorWhite"
-                android:text="Vehicle Assessment"
-                android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
-                android:textSize="18dp" />
+                android:layout_gravity="bottom"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imageView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="30dp"
+                        android:src="@drawable/baseline_folder_24px" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text=" Assessment"
+                        android:textAppearance="?android:attr/textAppearanceSearchResultTitle"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+
+
 
 
 </FrameLayout>

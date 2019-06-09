@@ -21,7 +21,7 @@ import java.util.Date;
 public class GlobalVarible {
     public static UploadRecord uploadRecord;
     public static String fileRoot = "root";
-    public static String url = "http://13980634.ngrok.io/";  // "https://api.motovalautoassessors.com/";
+    public static String url = "http://3a6393c7.ngrok.io/";  // "https://api.motovalautoassessors.com/";
     public static String imgpath = "";
     public static boolean RefreshGrid = false;
     public static int RequiredImagesCount = 3;
@@ -70,4 +70,7 @@ public class GlobalVarible {
         }
         return false;
     }
+
+
+
 }
