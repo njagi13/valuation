@@ -2,8 +2,12 @@ package com.dnjagi.carval;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Interface.IMotovalServicesInterface;
+import com.dnjagi.carval.Model.ValuationModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.ArrayList;
+
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -49,6 +53,11 @@ public class ApiUtility implements IMotovalServicesInterface {
     @Override
     public Call<ResponseBody> postImage(MultipartBody.Part image, RequestBody name) {
         return service.postImage(image, name);
+    }
+
+    @Override
+    public Call<ArrayList<ValuationModel>> valuationList(String email) {
+        return service.valuationList(email);
     }
 
 

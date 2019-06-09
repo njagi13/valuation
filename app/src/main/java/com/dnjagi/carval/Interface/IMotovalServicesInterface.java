@@ -1,5 +1,9 @@
 package com.dnjagi.carval.Interface;
 
+import com.dnjagi.carval.Model.ValuationModel;
+
+import java.util.ArrayList;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -19,8 +23,8 @@ public interface IMotovalServicesInterface {
     @POST("/api/Assessment/PostAssessment")
     Call<ResponseBody> postImage(@Part MultipartBody.Part image, @Part("uploadId") RequestBody uploadId);
 
-   /*   @GET("/api/Assessment/GetUserValuations")
-  Call<InventoryListAPI> valuationList(
-            @Query("pId") String email
-    );*/
+    @GET("/api/Assessment/GetUserValuations")
+    Call<ArrayList<ValuationModel>> valuationList(
+            @Query("email") String email
+    );
 }

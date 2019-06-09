@@ -4,14 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraOptions;
 import com.otaliastudios.cameraview.CameraView;
@@ -19,9 +20,6 @@ import com.otaliastudios.cameraview.SessionType;
 import com.otaliastudios.cameraview.Size;
 
 import java.io.File;
-
-import static com.otaliastudios.cameraview.Facing.BACK;
-import static com.otaliastudios.cameraview.Facing.FRONT;
 
 public class CameraViewFragment extends Fragment implements View.OnClickListener, ControlView.Callback {
     // TODO: Rename parameter arguments, choose names that match

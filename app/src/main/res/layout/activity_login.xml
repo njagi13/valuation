@@ -40,7 +40,7 @@
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                 app:srcCompat="@drawable/logo" />
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -53,9 +53,9 @@
                     android:maxLines="1"
                     android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -70,10 +70,9 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </android.support.design.widget.TextInputLayout>
-
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"

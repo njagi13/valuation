@@ -2,20 +2,12 @@ package com.dnjagi.carval;
 
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.otaliastudios.cameraview.CameraView;
-
-import java.util.ArrayList;
+import androidx.annotation.Nullable;
 
 public class MessageView extends LinearLayout {
 

@@ -41,7 +41,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
 
     public void PostImages() {
         try {
-            IMotovalServicesInterface inventoryInterface =
+            IMotovalServicesInterface iMotovalServicesInterface =
                     ApiClient.createService(IMotovalServicesInterface.class, GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetReadyToSendUploads();
@@ -61,7 +61,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         sentRec.save();
 
                         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), json);
-                        retrofit2.Call<okhttp3.ResponseBody> req = inventoryInterface.postImage(body, name);
+                        retrofit2.Call<okhttp3.ResponseBody> req = iMotovalServicesInterface.postImage(body, name);
                         Response<ResponseBody> response = req.execute();
                         if (response.isSuccessful()) {
                             //UPDATE STATUS AFTER POST  ////
@@ -84,7 +84,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
 
     public void postImagesByUploadId(String uploadRecordId) {
         try {
-            IMotovalServicesInterface inventoryInterface =
+            IMotovalServicesInterface iMotovalServicesInterface =
                     ApiClient.createService(IMotovalServicesInterface.class, GlobalVarible.token);
             String filePath = "";
             ArrayList<ImagePathRecord> unsentImages = myPosBase.GetImageUploadsByUploadRecordId(uploadRecordId);
@@ -104,7 +104,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         sentRec.save();
 
                         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), json);
-                        retrofit2.Call<okhttp3.ResponseBody> req = inventoryInterface.postImage(body, name);
+                        retrofit2.Call<okhttp3.ResponseBody> req = iMotovalServicesInterface.postImage(body, name);
                         req.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

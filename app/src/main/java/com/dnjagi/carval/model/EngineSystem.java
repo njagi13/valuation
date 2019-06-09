@@ -1,7 +1,5 @@
 package com.dnjagi.carval.Model;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by user on 8/1/2018.
  */
