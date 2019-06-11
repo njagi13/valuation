@@ -374,18 +374,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             LoginRecordAPI loginRecordAPI = new LoginRecordAPI(getApplicationContext(), LoginActivity.this);
             Boolean isLoggedIn = loginRecordAPI.LoginUser(loginRecord);
-            while(isLoggedIn!=true){
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
             if (isLoggedIn) {
-                showProgress(false);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext() , "Welcome!" , Toast.LENGTH_LONG).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext() , "Welcome!" , Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
+            else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showProgress(false);
+                        Toast.makeText(getApplicationContext() , "Login Error!" , Toast.LENGTH_LONG).show();
+                    }
+                });
+
             }
             return isLoggedIn;
         }

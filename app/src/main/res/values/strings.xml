@@ -28,6 +28,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="shr_hint_username">Email</string>
+    <string name="shr_hint_password">Password</string>
+    <string name="shr_button_next">Sign In</string>
+    <string name="shr_button_cancel">Cancel</string>
+    <string name="shr_error_password">Password must contain at least 8 characters.</string>
     <string name="title_activity_valuations">ValuationsActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

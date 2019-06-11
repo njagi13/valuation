@@ -33,6 +33,7 @@ public class LoginRecordAPI {
     }
 
     boolean IsLogged = false;
+
     public boolean LoginUser(LoginRecord loginRecord) {
         try {
 
@@ -46,38 +47,58 @@ public class LoginRecordAPI {
             }
             GlobalVarible.email = loginRecord.email;
             Call<AccessTokenResponse> req = iLoginInterface.loginUser("password", loginRecord.email, loginRecord.password, basicAuth);
-            req.enqueue(new Callback<AccessTokenResponse>() {
-                @Override
-                public void onResponse(Call<AccessTokenResponse> call, Response<AccessTokenResponse> response) {
-                    System.out.println(response.toString());
-                    if (response.isSuccessful()) {
-                        AccessTokenResponse res = response.body();
-                        SharedPreferences sharedpreferences = mContext.getSharedPreferences(GlobalVarible.LoggedIn, mContext.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putString("Email",  GlobalVarible.email );
-                        editor.putString("Token", res.access_token);
-                        editor.putString("LoginDateKey", new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
-                        editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1));
-                        editor.commit();
-                        GlobalVarible.token = res.access_token;
+            Response<AccessTokenResponse> response = req.execute();
+            if (response.isSuccessful()) {
+                IsLogged = true;
+                AccessTokenResponse res = response.body();
+                SharedPreferences sharedpreferences = mContext.getSharedPreferences(GlobalVarible.LoggedIn, mContext.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("Email", GlobalVarible.email);
+                editor.putString("Token", res.access_token);
+                editor.putString("LoginDateKey", new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
+                editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1));
+                editor.commit();
+                GlobalVarible.token = res.access_token;
 
-                        Intent intent = new Intent(mContext, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.startActivity(intent);
-                    } else {
-                        Toast.makeText(mContext, "Login Error!" , Toast.LENGTH_LONG).show();
-                        Utilities.LogException(new Exception("Error Login In"));
+                Intent intent = new Intent(mContext, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
 
-                    }
-                }
+            }
 
-                @Override
-                public void onFailure(Call<AccessTokenResponse> call, Throwable t) {
-                    IsLogged = false;
-                    Toast.makeText(mContext, "Login Error!" , Toast.LENGTH_LONG).show();
-                    Log.d("Error", t.getMessage());
-                }
-            });
+//            req.enqueue(new Callback<AccessTokenResponse>() {
+//                @Override
+//                public void onResponse(Call<AccessTokenResponse> call, Response<AccessTokenResponse> response) {
+//                    System.out.println(response.toString());
+//                    if (response.isSuccessful()) {
+//                        IsLogged = true;
+//                        AccessTokenResponse res = response.body();
+//                        SharedPreferences sharedpreferences = mContext.getSharedPreferences(GlobalVarible.LoggedIn, mContext.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sharedpreferences.edit();
+//                        editor.putString("Email",  GlobalVarible.email );
+//                        editor.putString("Token", res.access_token);
+//                        editor.putString("LoginDateKey", new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date()));
+//                        editor.putLong("ExpiredDate", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1));
+//                        editor.commit();
+//                        GlobalVarible.token = res.access_token;
+//
+//                        Intent intent = new Intent(mContext, MainActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        mContext.startActivity(intent);
+//                    } else {
+//                        Toast.makeText(mContext, "Login Error!" , Toast.LENGTH_LONG).show();
+//                        Utilities.LogException(new Exception("Error Login In"));
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<AccessTokenResponse> call, Throwable t) {
+//                    IsLogged = false;
+//                    Toast.makeText(mContext, "Login Error!" , Toast.LENGTH_LONG).show();
+//                    Log.d("Error", t.getMessage());
+//                }
+//            });
         } catch (Exception e) {
             Utilities.LogException(e);
         }

@@ -181,10 +181,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.reports) {
             fragment = new ValuationsFragment();
         } else if (id == R.id.nav_logout) {
+            SharedPreferences preferences =getSharedPreferences(GlobalVarible.LoggedIn,Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+            editor.commit();
+            finish();
+            GlobalVarible.token = "";
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            //clear globalVar
-            new GlobalVarible();
         }
 
         final Fragment finalFragment = fragment;
