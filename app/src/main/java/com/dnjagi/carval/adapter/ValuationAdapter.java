@@ -2,6 +2,7 @@ package com.dnjagi.carval.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,10 +92,11 @@ public class ValuationAdapter extends ArrayAdapter<UploadRecord> {
             holder.modelTextView.setText(IValuationModel.get(position).CarModel);
             holder.commentsTextView.setText(IValuationModel.get(position).Comments);
             //Todo: uncheck for rejected valuations
-//            if(IValuationModel.get(position).StatusString =="Rejected")
-//            {
-//                holder.review_button.setVisibility(View.VISIBLE);
-//            }
+            if(IValuationModel.get(position).StatusString.equals("Rejected"))
+            {
+                holder.review_button.setVisibility(View.VISIBLE);
+                holder.commentsTextView.setTextColor(Color.RED);
+            }
             holder.review_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

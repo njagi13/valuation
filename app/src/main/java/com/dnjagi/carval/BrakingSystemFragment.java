@@ -21,6 +21,7 @@ import com.dnjagi.carval.utility.Utilities;
 public class BrakingSystemFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+
     public BrakingSystemFragment() {
         // Required empty public constructor
     }
@@ -100,8 +101,14 @@ public class BrakingSystemFragment extends Fragment {
                     brakingSystemRecord.CommentsOnBraking = bsinput_comments.getText().toString();
                     brakingSystemRecord.UploadRecordID = GlobalVarible.uploadRecord.UploadRecordID;
                     GlobalVarible.uploadRecord.BrakingSystemRecordModel = brakingSystemRecord;
-                    Fragment fragment = new CameraViewFragment();
-                    replaceFragment(fragment);
+                    if (!GlobalVarible.uploadRecord.ReUploadImage && GlobalVarible.uploadRecord.StatusString.equals("Rejected")) {
+                         //Todo: Go to a submit page  or display a button in this fragment to post
+                        //Also set the valuation status to null or pending valuation
+                    } else {
+                        Fragment fragment = new CameraViewFragment();
+                        replaceFragment(fragment);
+                    }
+
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }

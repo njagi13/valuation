@@ -48,6 +48,10 @@ public class UploadRecord extends DatabaseObject {
     @SerializedName("RegistrationNumber")
     public String RegistrationNumber;
 
+
+    @SerializedName("ReUploadImage")
+    public boolean ReUploadImage;
+
     public String getRegistrationNumber() {
         return RegistrationNumber;
     }
