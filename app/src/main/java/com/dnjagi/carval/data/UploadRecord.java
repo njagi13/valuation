@@ -174,6 +174,12 @@ public class UploadRecord extends DatabaseObject {
         return RecommendedValue;
     }
 
+    @SerializedName("MpesaCode")
+    public String MpesaCode;
+    public String MpesaCode() {
+        return MpesaCode;
+    }
+
     @SerializedName("ImagesPath")
     public String ImagesPath;
 

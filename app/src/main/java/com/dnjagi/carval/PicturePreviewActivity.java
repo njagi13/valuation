@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,12 +50,15 @@ public class PicturePreviewActivity extends AppCompatActivity {
     ArrayList<String> mFilePaths = new ArrayList<String>();// list of file paths
     File[] listFile;
     Button buttonFinish;
-    ImageView addImage;
-    private int count;
+    Button addImage;
+    boolean allImagesUploaded = false;
     private Bitmap[] thumbnails;
     private boolean[] thumbnailsselection;
     private String[] arrPath;
     private ImageAdapter imageAdapter;
+    private EditText input_mpesa_code, recommendedVal;
+    private ImageView imageView;
+    private boolean isMpesaCodeValid;
 
     public static void setImage(@Nullable byte[] im) {
         image = im != null ? new WeakReference<>(im) : null;
@@ -67,8 +72,9 @@ public class PicturePreviewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_preview);
-        final ImageView imageView = findViewById(R.id.image);
-        final EditText recommendedVal = findViewById(R.id.input_recVal);
+        imageView = findViewById(R.id.image);
+        recommendedVal = findViewById(R.id.input_recVal);
+        input_mpesa_code = findViewById(R.id.input_mpesa_code);
         buttonFinish = findViewById(R.id.buttonFinish);
         final long delay = getIntent().getLongExtra("delay", 0);
         final int nativeWidth = getIntent().getIntExtra("nativeWidth", 0);
@@ -78,6 +84,17 @@ public class PicturePreviewActivity extends AppCompatActivity {
             finish();
             return;
         }
+
+        if (GlobalVarible.uploadRecord.RecommendedValue > 0) {
+            recommendedVal.setText(GlobalVarible.uploadRecord.RecommendedValue);
+        }
+        if (GlobalVarible.uploadRecord.MpesaCode != null && GlobalVarible.uploadRecord.MpesaCode.length() > 0) {
+            input_mpesa_code.setText(GlobalVarible.uploadRecord.MpesaCode);
+        }
+        if (isMpesaCodeValid && allImagesUploaded) {
+            buttonFinish.setVisibility(View.VISIBLE);
+        }
+
         addImage = findViewById(R.id.addImage);
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,16 +138,47 @@ public class PicturePreviewActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please wait..", Toast.LENGTH_LONG).show();
                 buttonFinish.setEnabled(false);
                 String recValue = recommendedVal.getText().toString();
+                String mpesacodeValue = input_mpesa_code.getText().toString();
                 if (GlobalVarible.uploadRecord != null) {
                     GlobalVarible.uploadRecord.RecommendedValue = Integer.parseInt(recValue);
+                    GlobalVarible.uploadRecord.MpesaCode = mpesacodeValue;
                 }
                 PostValuation();
             }
         });
+        input_mpesa_code.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (allImagesUploaded && after == 10) {
+                    isMpesaCodeValid = true;
+                    buttonFinish.setVisibility(View.VISIBLE);
+                } else {
+                    isMpesaCodeValid = false;
+                    buttonFinish.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (allImagesUploaded && count == 10) {
+                    buttonFinish.setVisibility(View.VISIBLE);
+                    isMpesaCodeValid = true;
+                } else {
+                    isMpesaCodeValid = false;
+                    buttonFinish.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void PostValuation() {
-        UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
+        UploadRecordAPI uploadRecordAPI = new UploadRecordAPI(getApplicationContext());
         uploadRecordAPI.CreateValuation(GlobalVarible.uploadRecord);
     }
 
@@ -194,12 +242,16 @@ public class PicturePreviewActivity extends AppCompatActivity {
         if (file.isDirectory()) {
             listFile = file.listFiles();
             if (listFile.length >= GlobalVarible.RequiredImagesCount) {
-                buttonFinish.setVisibility(View.VISIBLE);
-                addImage.setVisibility(View.INVISIBLE);
+                allImagesUploaded = true;
+                addImage.setVisibility(View.GONE);
             } else {
                 addImage.setVisibility(View.VISIBLE);
-                buttonFinish.setVisibility(View.INVISIBLE);
+                allImagesUploaded = false;
             }
+            if (isMpesaCodeValid && allImagesUploaded) {
+                buttonFinish.setVisibility(View.VISIBLE);
+            }
+
             for (int i = 0; i < listFile.length; i++) {
                 mFilePaths.add(listFile[i].getAbsolutePath());
             }

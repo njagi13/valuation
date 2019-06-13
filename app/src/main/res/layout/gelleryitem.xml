@@ -17,5 +17,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:clickable="true"
+        android:padding="5dp"
         android:src="@drawable/close" />
 </RelativeLayout>

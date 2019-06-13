@@ -2,6 +2,7 @@ package com.dnjagi.carval.data;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -33,10 +34,10 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
     final MyPosBase myPosBase = new MyPosBase();
 
     private Context mContext;
-///Todo: ADD CONSTRUCTOR THAT HANDLES CONTEXT
-//    public  UploadRecordAPI(Context context){
-//        mContext = context;
-//    }3333333
+
+    public  UploadRecordAPI(Context context){
+        mContext = context;
+    }
 
 
     public void PostImages() {
@@ -136,6 +137,11 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
 
     public void CreateValuation(final UploadRecord uploadRecord) {
         try {
+            if( GlobalVarible.uploadRecord.ValuerEmail == null)
+            {
+                SharedPreferences preferences = mContext.getSharedPreferences(GlobalVarible.LoggedIn, mContext.getApplicationContext().MODE_PRIVATE);
+                GlobalVarible.uploadRecord.ValuerEmail = preferences.getString("Email", null);
+            }
             IUploadRecordInterface iUploadRecordInterface =
                     ApiClient.createService(IUploadRecordInterface.class, GlobalVarible.token);
             Call<UploadRecord> req = iUploadRecordInterface.postUploadRecordInformation(uploadRecord);
@@ -147,7 +153,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         ArrayList<ImagePathRecord> postedImagePathRecord = myPosBase.GetUnsentUploadRecords(uploadRecord.UploadRecordID.toString());
                         myPosBase.UpDateUploadStatus(uploadRecord.UploadRecordID.toString(), eFileStatus.PENDING_POST);
                         //todo: post the images asynchronously // change to backend service later
-                        UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
+                        UploadRecordAPI uploadRecordAPI = new UploadRecordAPI(mContext);
                         uploadRecordAPI.postImagesByUploadId(uploadRecord.UploadRecordID.toString());
                         // confirm
                         ArrayList<ImagePathRecord> arechanged = ImagePathRecord.findAllRecords(ImagePathRecord.class);

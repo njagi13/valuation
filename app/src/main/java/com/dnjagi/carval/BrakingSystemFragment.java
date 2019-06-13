@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -37,6 +38,8 @@ public class BrakingSystemFragment extends Fragment {
     private Switch bsparkingbreak_switch, bsfootbrakespongy_switch, bsbrakepedalfreeplay_switch, bsabnormalnoise_switch, bsABS_switch, bsbrakeseffective_switch, bsfluidleaks_switch;
     private EditText bsinput_comments;
 
+    private boolean IsRevision= false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,9 @@ public class BrakingSystemFragment extends Fragment {
                              Bundle savedInstanceState) {
         getActivity().setTitle("Braking System Inspection");
         View view = inflater.inflate(R.layout.fragment_braking_system, container, false);
-
+        if (GlobalVarible.uploadRecord != null && !GlobalVarible.uploadRecord.ReUploadImage && GlobalVarible.uploadRecord.StatusString !=null && GlobalVarible.uploadRecord.StatusString.equals("Rejected")) {
+            IsRevision = true;
+        }
         bsparkingbreak_switch = (Switch) view.findViewById(R.id.bsparkingbreak_switch);
         bsfootbrakespongy_switch = (Switch) view.findViewById(R.id.bsfootbrakespongy_switch);
         bsbrakepedalfreeplay_switch = (Switch) view.findViewById(R.id.bsbrakepedalfreeplay_switch);
@@ -101,8 +106,9 @@ public class BrakingSystemFragment extends Fragment {
                     brakingSystemRecord.CommentsOnBraking = bsinput_comments.getText().toString();
                     brakingSystemRecord.UploadRecordID = GlobalVarible.uploadRecord.UploadRecordID;
                     GlobalVarible.uploadRecord.BrakingSystemRecordModel = brakingSystemRecord;
-                    if (!GlobalVarible.uploadRecord.ReUploadImage && GlobalVarible.uploadRecord.StatusString.equals("Rejected")) {
-                         //Todo: Go to a submit page  or display a button in this fragment to post
+                    if (IsRevision) {
+                        Fragment fragment = new ConfirmCorrectionFragment();
+                        replaceFragment(fragment);
                         //Also set the valuation status to null or pending valuation
                     } else {
                         Fragment fragment = new CameraViewFragment();

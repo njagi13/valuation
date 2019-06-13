@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity
         SuspensionSystemFragment.OnFragmentInteractionListener,
         BrakingSystemFragment.OnFragmentInteractionListener,
         ValuationsFragment.OnFragmentInteractionListener,
-        AccidentAssessmentFragment.OnFragmentInteractionListener {
+        AccidentAssessmentFragment.OnFragmentInteractionListener,
+        ConfirmCorrectionFragment.OnFragmentInteractionListener {
 
     public static Context appContext;
     private boolean cleanUpDatabase = false;
@@ -134,11 +135,17 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        int count = getSupportFragmentManager().getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        }  if (count == 0) {
+           finish();
+            moveTaskToBack(true);
         } else {
             super.onBackPressed();
         }
+
+
     }
 
     @Override
@@ -181,7 +188,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.reports) {
             fragment = new ValuationsFragment();
         } else if (id == R.id.nav_logout) {
-            SharedPreferences preferences =getSharedPreferences(GlobalVarible.LoggedIn,Context.MODE_PRIVATE);
+            SharedPreferences preferences = getSharedPreferences(GlobalVarible.LoggedIn, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.clear();
             editor.commit();

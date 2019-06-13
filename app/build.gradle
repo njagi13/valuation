@@ -39,7 +39,8 @@ allprojects {
 configurations.all {
     resolutionStrategy {
         force 'androidx.legacy:legacy-support-v4:1.0.0'
-    }}
+    }
+}
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'

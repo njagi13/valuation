@@ -43,7 +43,7 @@ public class UploadService extends IntentService {
             Date now = new Date();
             if (GlobalVarible.hasActiveInternetConnection(getApplicationContext()) && nextPollInventory == null || (now.getTime() > (nextPollInventory.getTime() + (MS_TO_MINS)))) {
                 nextPollInventory = now;
-                UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
+              //  UploadRecordAPI uploadRecordAPI = new UploadRecordAPI();
                 //disable posting images in service
                // uploadRecordAPI.PostImages();
             }
