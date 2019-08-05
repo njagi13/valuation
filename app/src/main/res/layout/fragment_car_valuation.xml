@@ -58,7 +58,7 @@
                                 android:enabled="true"
                                 android:hint="Make"
                                 android:inputType="textCapCharacters"
-                                android:maxLength="10"
+                                android:maxLength="20"
                                 android:textSize="13dp" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
@@ -469,6 +469,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textNoSuggestions|textEmailAddress"
+                            android:hint="Email"
                             android:textSize="13dp" />
 
 

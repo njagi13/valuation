@@ -183,7 +183,7 @@
                             android:id="@+id/tspropeliershaftbent_switch"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text=" Is propelier shaft bent or wobbling?"
+                            android:text=" Is propelLer shaft bent or wobbling?"
                             android:textOff="OFF"
                             android:textOn="ON" />
                     </LinearLayout>

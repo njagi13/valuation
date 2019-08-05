@@ -85,14 +85,15 @@ public class PicturePreviewActivity extends AppCompatActivity {
             return;
         }
 
-        if (GlobalVarible.uploadRecord.RecommendedValue > 0) {
-            recommendedVal.setText(GlobalVarible.uploadRecord.RecommendedValue);
+        if (GlobalVarible.uploadRecord != null && GlobalVarible.uploadRecord.RecommendedValue > 0) {
+            recommendedVal.setText(Integer.toString(GlobalVarible.uploadRecord.RecommendedValue));
         }
-        if (GlobalVarible.uploadRecord.MpesaCode != null && GlobalVarible.uploadRecord.MpesaCode.length() > 0) {
+        if (GlobalVarible.uploadRecord != null && GlobalVarible.uploadRecord.MpesaCode != null && GlobalVarible.uploadRecord.MpesaCode.length() > 0) {
             input_mpesa_code.setText(GlobalVarible.uploadRecord.MpesaCode);
+            isMpesaCodeValid = true;
         }
         if (isMpesaCodeValid && allImagesUploaded) {
-            buttonFinish.setVisibility(View.VISIBLE);
+            buttonFinish.setEnabled(true);
         }
 
         addImage = findViewById(R.id.addImage);
@@ -136,7 +137,8 @@ public class PicturePreviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Please wait..", Toast.LENGTH_LONG).show();
-                buttonFinish.setEnabled(false);
+               // buttonFinish.setEnabled(false);
+                buttonFinish.setText("Sending..");
                 String recValue = recommendedVal.getText().toString();
                 String mpesacodeValue = input_mpesa_code.getText().toString();
                 if (GlobalVarible.uploadRecord != null) {
@@ -151,21 +153,21 @@ public class PicturePreviewActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 if (allImagesUploaded && after == 10) {
                     isMpesaCodeValid = true;
-                    buttonFinish.setVisibility(View.VISIBLE);
+                    buttonFinish.setEnabled(true);
                 } else {
                     isMpesaCodeValid = false;
-                    buttonFinish.setVisibility(View.GONE);
+                    buttonFinish.setEnabled(false);
                 }
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (allImagesUploaded && count == 10) {
-                    buttonFinish.setVisibility(View.VISIBLE);
+                    buttonFinish.setEnabled(true);
                     isMpesaCodeValid = true;
                 } else {
                     isMpesaCodeValid = false;
-                    buttonFinish.setVisibility(View.GONE);
+                    buttonFinish.setEnabled(false);
                 }
             }
 
@@ -190,28 +192,33 @@ public class PicturePreviewActivity extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat mdformat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
             String strDate = mdformat.format(calendar.getTime());
-            fileName = strDate;
+
             GlobalVarible.fileRoot = GlobalVarible.uploadRecord.RegistrationNumber;
             String uploadId = GlobalVarible.uploadRecord.UploadRecordID.toString();
-            mFolder = new File(SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" + uploadId + "_" + fileName + ".png");
+            fileName = uploadId  + "_" + strDate;
+            mFolder = new File(SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/" +uploadId + "/");
             if (!mFolder.exists()) {
                 mFolder.mkdirs();
             }
-            if (mFolder.exists()) {
-                mFolder.delete();
+
+            File file = new File(new File(SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot + "/"+ uploadId  ),fileName + ".png");
+            if (file.exists()) {
+                file.delete();
             }
-            GlobalVarible.imgpath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + "/" + GlobalVarible.fileRoot;
+
+            String imagesPath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + GlobalVarible.fileRoot + "/" +uploadId + "/";
+            GlobalVarible.imgpath = imagesPath;
             ImagePathRecord imagePathRecord = new ImagePathRecord();
             //PENDING SUBMISSION SINCE USER HAS NOT CLICKED SEND
             imagePathRecord.FileStatus = eFileStatus.PENDING_SUBMISSION;
-            imagePathRecord.ImagePath = SD_CARD_PATH + BASE_FOLDER + SERIALIZED_FOLDER + GlobalVarible.fileRoot + "/" + uploadId + "_";
+            imagePathRecord.ImagePath = imagesPath;
             imagePathRecord.FileName = fileName;
             imagePathRecord.UploadRecordID = uploadId;
             imagePathRecord.save();
             ArrayList<ImagePathRecord> tt = ImagePathRecord.findAllRecords(ImagePathRecord.class);
 
             try {
-                FileOutputStream out = new FileOutputStream(mFolder);
+                FileOutputStream out = new FileOutputStream(file);
                 imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
                 out.flush();
                 out.close();
@@ -249,7 +256,7 @@ public class PicturePreviewActivity extends AppCompatActivity {
                 allImagesUploaded = false;
             }
             if (isMpesaCodeValid && allImagesUploaded) {
-                buttonFinish.setVisibility(View.VISIBLE);
+                buttonFinish.setEnabled(true);
             }
 
             for (int i = 0; i < listFile.length; i++) {

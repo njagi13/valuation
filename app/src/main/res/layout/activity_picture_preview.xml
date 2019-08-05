@@ -56,27 +56,27 @@
         </LinearLayout>
 
 
-
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/GRIDv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1">
-        <GridView
-            android:id="@+id/PhoneImageGrid"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="44dp"
-            android:columnWidth="110dp"
-            android:gravity="center"
-            android:horizontalSpacing="10dp"
-            android:numColumns="auto_fit"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="0dp" />
-    </LinearLayout>
+            android:id="@+id/GRIDv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <GridView
+                android:id="@+id/PhoneImageGrid"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="44dp"
+                android:columnWidth="110dp"
+                android:gravity="center"
+                android:horizontalSpacing="10dp"
+                android:numColumns="auto_fit"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="0dp" />
+        </LinearLayout>
 
     <LinearLayout
         android:id="@+id/LinearLayout03"
@@ -123,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:enabled="true"
                     android:hint="CUSTOMER MPESA CODE"
-                    android:inputType="text"
+                    android:inputType="textCapCharacters"
                     android:maxLength="10"
                     android:textSize="13dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -167,7 +167,7 @@
             android:layout_weight="1"
             android:background="#7DCEA0"
             android:text="POST VALUATION"
-            android:visibility="invisible"></Button>
+            android:enabled="false"></Button>
     </LinearLayout>
 
     </LinearLayout>

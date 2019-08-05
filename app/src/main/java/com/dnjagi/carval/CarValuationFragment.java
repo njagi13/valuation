@@ -225,6 +225,7 @@ public class CarValuationFragment extends Fragment
                     mUploadRecord.EngineRating = input_engrating.getText().toString();
                     mUploadRecord.FirstName = input_fname.getText().toString();
                     mUploadRecord.LastName = input_lname.getText().toString();
+                    mUploadRecord.MiddleName = input_mname.getText().toString();
                     mUploadRecord.PhoneNumber1 = input_phone1.getText().toString();
                     mUploadRecord.PhoneNumber2 = input_phone2.getText().toString();
                     mUploadRecord.Email = input_email.getText().toString();

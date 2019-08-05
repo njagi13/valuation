@@ -21,10 +21,10 @@ import java.util.Date;
 public class GlobalVarible {
     public static UploadRecord uploadRecord;
     public static String fileRoot = "root";
-    public static String url = "http://f9956a10.ngrok.io/";  // "https://api.motovalautoassessors.com/";
+    public static String url = "http://9a4d0c81.ngrok.io/"; // "https://api.motovalautoassessors.com/";
     public static String imgpath = "";
     public static boolean RefreshGrid = false;
-    public static int RequiredImagesCount = 3;
+    public static int RequiredImagesCount = 5;
     public static String LoggedIn = "LoggedIn";
     public static String token ;
     public static String email ;
