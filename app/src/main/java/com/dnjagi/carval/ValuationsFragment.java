@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-
 import androidx.fragment.app.Fragment;
-
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Interface.IMotovalServicesInterface;
 import com.dnjagi.carval.adapter.ValuationAdapter;
@@ -19,9 +17,7 @@ import com.dnjagi.carval.data.ApiClient;
 import com.dnjagi.carval.data.UploadRecord;
 import com.dnjagi.carval.utility.Utilities;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +48,7 @@ public class ValuationsFragment extends Fragment {
         final Button btn = (Button) view.findViewById(R.id.btnShow1);
         IMotovalServicesInterface iMotovalServicesInterface =
                 ApiClient.createService(IMotovalServicesInterface.class, GlobalVarible.token);
-        Call<ArrayList<UploadRecord>> req = iMotovalServicesInterface.valuationList(GlobalVarible.email);
+        Call<ArrayList<UploadRecord>> req = iMotovalServicesInterface.ValuationList(GlobalVarible.email);
         req.enqueue(new Callback<ArrayList<UploadRecord>>() {
             @Override
             public void onResponse(Call<ArrayList<UploadRecord>> call, Response<ArrayList<UploadRecord>> response) {

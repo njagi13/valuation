@@ -91,7 +91,7 @@ public class SuspensionSystemFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     Fragment fragment = new TransmissionSystemFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment,"BrakingSystemFragment");
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
@@ -117,7 +117,7 @@ public class SuspensionSystemFragment extends Fragment {
 
 
                     Fragment fragment = new BrakingSystemFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment,"BrakingSystemFragment");
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
@@ -152,9 +152,9 @@ public class SuspensionSystemFragment extends Fragment {
         mListener = null;
     }
 
-    public void replaceFragment(Fragment someFragment) {
+    public void replaceFragment(Fragment someFragment, String fragmentName) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
+        transaction.replace(R.id.mainFrame, someFragment).addToBackStack(fragmentName);
         transaction.addToBackStack(null);
         transaction.commit();
     }

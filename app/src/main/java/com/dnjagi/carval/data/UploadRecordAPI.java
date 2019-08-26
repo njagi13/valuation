@@ -62,7 +62,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         sentRec.save();
 
                         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), json);
-                        retrofit2.Call<okhttp3.ResponseBody> req = iMotovalServicesInterface.postImage(body, name);
+                        retrofit2.Call<okhttp3.ResponseBody> req = iMotovalServicesInterface.PostImage(body, name);
                         Response<ResponseBody> response = req.execute();
                         if (response.isSuccessful()) {
                             //UPDATE STATUS AFTER POST  ////
@@ -105,7 +105,7 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                         sentRec.save();
 
                         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), json);
-                        retrofit2.Call<okhttp3.ResponseBody> req = iMotovalServicesInterface.postImage(body, name);
+                        retrofit2.Call<okhttp3.ResponseBody> req = iMotovalServicesInterface.PostImage(body, name);
                         req.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -142,6 +142,12 @@ public class UploadRecordAPI extends APIBase<uploadDataObj> {
                 SharedPreferences preferences = mContext.getSharedPreferences(GlobalVarible.LoggedIn, mContext.getApplicationContext().MODE_PRIVATE);
                 GlobalVarible.uploadRecord.ValuerEmail = preferences.getString("Email", null);
             }
+            uploadRecord.ValuationTypeID = GlobalVarible.SelectedValuationType.ObjectID;
+            if(GlobalVarible.SelectedCompany != null && GlobalVarible.SelectedCompany.CompanyID > 0)
+            {
+                uploadRecord.CompanyID = GlobalVarible.SelectedCompany.CompanyID;
+            }
+
             IUploadRecordInterface iUploadRecordInterface =
                     ApiClient.createService(IUploadRecordInterface.class, GlobalVarible.token);
             Call<UploadRecord> req = iUploadRecordInterface.postUploadRecordInformation(uploadRecord);

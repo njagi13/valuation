@@ -55,8 +55,8 @@ public class HomeFragment extends Fragment {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new CarValuationFragment();
-                replaceFragment(fragment);
+                Fragment fragment = new ValuationTypeFragment();
+                replaceFragment(fragment,"ValuationTypeFragment");
             }
         });
         return view;
@@ -94,9 +94,9 @@ public class HomeFragment extends Fragment {
 
 
 
-    public void replaceFragment(Fragment someFragment) {
+    public void replaceFragment(Fragment someFragment, String fragmentName) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
+        transaction.replace(R.id.mainFrame, someFragment).addToBackStack(fragmentName);
         transaction.addToBackStack(null);
         transaction.commit();
     }

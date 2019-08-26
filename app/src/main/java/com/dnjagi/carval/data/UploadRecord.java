@@ -10,6 +10,13 @@ import java.util.UUID;
  */
 
 public class UploadRecord extends DatabaseObject {
+
+    @SerializedName("CompanyID")
+    public int  CompanyID;
+
+    @SerializedName("ValuationTypeID")
+    public UUID  ValuationTypeID;
+
     @SerializedName("UploadRecordID")
     public UUID     UploadRecordID;
 
@@ -84,7 +91,7 @@ public class UploadRecord extends DatabaseObject {
         return DateOfReg;
     }
 
-    @SerializedName("ChasisNumber")
+    @SerializedName("ChassisNumber")
     public String ChassisNumber;
 
     public String getChasisNumber() {

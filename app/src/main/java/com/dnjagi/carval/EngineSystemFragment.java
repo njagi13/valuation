@@ -100,7 +100,7 @@ public class EngineSystemFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     Fragment fragment = new VisualInspectionFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment,"VisualInspectionFragment");
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
@@ -129,7 +129,7 @@ public class EngineSystemFragment extends Fragment {
                     GlobalVarible.uploadRecord.EngineSystemRecordModel = engineSystemRecord;
 
                     Fragment fragment = new TransmissionSystemFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment,"TransmissionSystemFragment");
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
@@ -170,9 +170,9 @@ public class EngineSystemFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void replaceFragment(Fragment someFragment) {
+    public void replaceFragment(Fragment someFragment, String fragmentName) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
+        transaction.replace(R.id.mainFrame, someFragment).addToBackStack(fragmentName);
         transaction.addToBackStack(null);
         transaction.commit();
     }

@@ -81,7 +81,7 @@ public class ConfirmCorrectionFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     Fragment fragment = new BrakingSystemFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment,"BrakingSystemFragment");
 
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
@@ -120,9 +120,9 @@ public class ConfirmCorrectionFragment extends Fragment {
         uploadRecordAPI.CreateValuation(GlobalVarible.uploadRecord);
     }
 
-    public void replaceFragment(Fragment someFragment) {
+    public void replaceFragment(Fragment someFragment, String fragmentName) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
+        transaction.replace(R.id.mainFrame, someFragment).addToBackStack(fragmentName);
         transaction.addToBackStack(null);
         transaction.commit();
     }

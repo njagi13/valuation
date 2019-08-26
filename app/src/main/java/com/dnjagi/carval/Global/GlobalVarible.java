@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.dnjagi.carval.data.CompanyRecord;
 import com.dnjagi.carval.data.UploadRecord;
+import com.dnjagi.carval.data.ValuationTypeRecord;
 import com.dnjagi.carval.utility.Utilities;
 
 import java.io.IOException;
@@ -21,13 +23,15 @@ import java.util.Date;
 public class GlobalVarible {
     public static UploadRecord uploadRecord;
     public static String fileRoot = "root";
-    public static String url = "http://9a4d0c81.ngrok.io/"; // "https://api.motovalautoassessors.com/";
+    public static String url = "http://eef7e687.ngrok.io/"; // "https://api.motovalautoassessors.com/";
     public static String imgpath = "";
     public static boolean RefreshGrid = false;
     public static int RequiredImagesCount = 5;
     public static String LoggedIn = "LoggedIn";
     public static String token ;
     public static String email ;
+    public static ValuationTypeRecord SelectedValuationType;
+    public static CompanyRecord SelectedCompany;
     public static String parseDateToddMMyyyy(String time) {
         String inputPattern = "yyyy-MM-dd HH:mm:ss";
         String outputPattern = "dd-MMM-yyyy h:mm a";

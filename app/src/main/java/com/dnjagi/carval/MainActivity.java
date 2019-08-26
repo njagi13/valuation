@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity
         BrakingSystemFragment.OnFragmentInteractionListener,
         ValuationsFragment.OnFragmentInteractionListener,
         AccidentAssessmentFragment.OnFragmentInteractionListener,
-        ConfirmCorrectionFragment.OnFragmentInteractionListener {
+        ConfirmCorrectionFragment.OnFragmentInteractionListener ,
+ValuationTypeFragment.OnFragmentInteractionListener{
 
     public static Context appContext;
     private boolean cleanUpDatabase = false;
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity
         // go to home page
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, new HomeFragment());
+
         ft.commit();
     }
 
@@ -135,17 +137,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        int count = getSupportFragmentManager().getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }  if (count == 0) {
-           finish();
-            moveTaskToBack(true);
+        }
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
-
-
     }
 
     @Override

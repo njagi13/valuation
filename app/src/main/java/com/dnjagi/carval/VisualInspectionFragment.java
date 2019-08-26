@@ -122,7 +122,7 @@ public class VisualInspectionFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     Fragment fragment = new CarValuationFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment, "EngineSystemFragment");
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
@@ -168,7 +168,7 @@ public class VisualInspectionFragment extends Fragment {
                     GlobalVarible.uploadRecord.VisualInspectionRecordModel = visualInspectionRecordModel;
 
                     Fragment fragment = new EngineSystemFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment, "EngineSystemFragment");
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
@@ -178,9 +178,9 @@ public class VisualInspectionFragment extends Fragment {
     }
 
 
-    public void replaceFragment(Fragment someFragment) {
+    public void replaceFragment(Fragment someFragment, String fragmentName) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
+        transaction.replace(R.id.mainFrame, someFragment).addToBackStack(fragmentName);
         transaction.addToBackStack(null);
         transaction.commit();
     }

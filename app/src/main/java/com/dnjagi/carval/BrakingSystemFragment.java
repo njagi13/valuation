@@ -83,7 +83,7 @@ public class BrakingSystemFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     Fragment fragment = new SuspensionSystemFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment,"SuspensionSystemFragment");
                 } catch (Exception ex) {
                     Utilities.LogException(ex);
                 }
@@ -108,11 +108,11 @@ public class BrakingSystemFragment extends Fragment {
                     GlobalVarible.uploadRecord.BrakingSystemRecordModel = brakingSystemRecord;
                     if (IsRevision) {
                         Fragment fragment = new ConfirmCorrectionFragment();
-                        replaceFragment(fragment);
+                        replaceFragment(fragment, "ConfirmCorrectionFragment");
                         //Also set the valuation status to null or pending valuation
                     } else {
                         Fragment fragment = new CameraViewFragment();
-                        replaceFragment(fragment);
+                        replaceFragment(fragment,"CameraViewFragment");
                     }
 
                 } catch (Exception ex) {
@@ -154,9 +154,9 @@ public class BrakingSystemFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void replaceFragment(Fragment someFragment) {
+    public void replaceFragment(Fragment someFragment, String fragmentName) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFrame, someFragment);
+        transaction.replace(R.id.mainFrame, someFragment).addToBackStack(fragmentName);
         transaction.addToBackStack(null);
         transaction.commit();
     }

@@ -2,7 +2,9 @@ package com.dnjagi.carval;
 
 import com.dnjagi.carval.Global.GlobalVarible;
 import com.dnjagi.carval.Interface.IMotovalServicesInterface;
+import com.dnjagi.carval.data.CompanyRecord;
 import com.dnjagi.carval.data.UploadRecord;
+import com.dnjagi.carval.data.ValuationTypeRecord;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -51,13 +53,23 @@ public class ApiUtility implements IMotovalServicesInterface {
 
 
     @Override
-    public Call<ResponseBody> postImage(MultipartBody.Part image, RequestBody name) {
-        return service.postImage(image, name);
+    public Call<ResponseBody> PostImage(MultipartBody.Part image, RequestBody name) {
+        return service.PostImage(image, name);
     }
 
     @Override
-    public Call<ArrayList<UploadRecord>> valuationList(String email) {
-        return service.valuationList(email);
+    public Call<ArrayList<UploadRecord>> ValuationList(String email) {
+        return service.ValuationList(email);
+    }
+
+    @Override
+    public Call<ArrayList<ValuationTypeRecord>> GetValuationTypes() {
+        return service.GetValuationTypes();
+    }
+
+    @Override
+    public Call<ArrayList<CompanyRecord>> GetCompanies() {
+        return service.GetCompanies();
     }
 
 

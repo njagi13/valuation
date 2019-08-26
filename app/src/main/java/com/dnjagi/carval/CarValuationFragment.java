@@ -219,6 +219,7 @@ public class CarValuationFragment extends Fragment
                     mUploadRecord.OdomReading = input_odom.getText().toString();
                     mUploadRecord.YearOfManufacture = input_yearOfManf.getText().toString();
                     mUploadRecord.PolicyNumber = input_policyNo.getText().toString();
+                    mUploadRecord.InsCompany = input_policyNo.getText().toString();
                     mUploadRecord.InsExpiryDate = dateOfPolicyExpiryText.getText().toString();
                     mUploadRecord.ChassisNumber = input_chasisnumber.getText().toString();
                     mUploadRecord.EngineNumber = input_enginenumber.getText().toString();
@@ -237,32 +238,16 @@ public class CarValuationFragment extends Fragment
                         setupGlobalUploadRecord(mUploadRecord);
                     }
 
-
-
-                   /* for (Field field : mUploadRecord.getClass().getDeclaredFields()) {
-                        field.setAccessible(true);
-                        String name = field.getName();
-                        Object value = field.get(mUploadRecord);
-                      if(name != "EngineSystemRec" || name != "TransmissionSystemRecordModel" || name != "SuspensionSystemRecordModel" || name != "BrakingSystemRecordModel" || name != "ImagesPath")
-                      {
-                          if(value == null)
-                          {
-                              Toast t = Toast.makeText(getContext() , name + " is required" , Toast.LENGTH_LONG);
-                              t.show();
-                          }
-                      }
-                    }*/
-
                     //save locally
                     //  mUploadRecord.save();
                     // long tt = UploadRecord.count(UploadRecord.class);
                     fragment = new VisualInspectionFragment();
-                    replaceFragment(fragment);
+                    replaceFragment(fragment , "VisualInspectionFragment");
                     break;
                 case R.id.buttonCancelInvoice:
                     GlobalVarible.uploadRecord = new UploadRecord();
-                    fragment = new HomeFragment();
-                    replaceFragment(fragment);
+                    fragment = new ValuationTypeFragment();
+                    replaceFragment(fragment, "ValuationTypeFragment");
                     break;
             }
         } catch (Exception ex) {
@@ -293,20 +278,17 @@ public class CarValuationFragment extends Fragment
             GlobalVarible.uploadRecord.DateOfReg = mUploadRecord.DateOfReg;
             GlobalVarible.uploadRecord.UploadRecordID = mUploadRecord.UploadRecordID;
             GlobalVarible.uploadRecord.ValuerEmail = mUploadRecord.ValuerEmail;
+            GlobalVarible.uploadRecord.InsCompany = mUploadRecord.InsCompany;
         } catch (Exception ex) {
             Utilities.LogException(ex);
         }
     }
 
-    public void replaceFragment(Fragment someFragment) {
-        try {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.mainFrame, someFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        } catch (Exception ex) {
-            Utilities.LogException(ex);
-        }
+    public void replaceFragment(Fragment someFragment, String fragmentName) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.mainFrame, someFragment).addToBackStack(fragmentName);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public interface OnFragmentInteractionListener {
